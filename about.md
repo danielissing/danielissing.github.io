@@ -1,7 +1,7 @@
 ---
-layout: post
-title: "Hello World"
-date: 2025-05-24
+layout: page
+title: About
+permalink: /about/
 ---
 
-Testing, testing... more content to come.
+Welcome to my website!
