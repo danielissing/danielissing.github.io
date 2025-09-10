@@ -468,7 +468,7 @@
         }
 
         /* Collapsible photo gallery */
-        .photo-gallery.collapsed .photo-item:nth-child(n+7) {
+        .photo-gallery.collapsed .photo-item:nth-child(n+9) {
             display: none;
         }
 
@@ -562,13 +562,44 @@
             max-width: 90%;
             max-height: 90%;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-image-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-description {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 25px;
+            backdrop-filter: blur(4px);
+            max-width: calc(100% - 40px);
+            box-sizing: border-box;
+            z-index: 10;
         }
 
         .lightbox img {
-            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
             height: auto;
             display: block;
             animation: zoomIn 0.3s ease;
+            object-fit: contain;
         }
 
         .lightbox-close {
@@ -1010,7 +1041,24 @@
 
     <!-- Travel Section -->
     <section id="travel">
-        <h2>Travel Adventures</h2>
+        <h2>Traveling</h2>
+        
+        <div class="world-travel">
+            <p style="text-align: center; color: var(--light-text); font-style: italic; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.7;">
+                The earth is just one small planet in our solar system, which itself makes up but a tiny part of one of trillions of galaxies.
+                And yet, I've seen preciously little of it.
+                This map serves as a reminder that there are still many places left to be explored, and many things I don't know. 
+                Scroll down for some highlights from places I did get a chance to visit!
+            
+            </p>
+            <div id="world-map" style="width: 100%; height: 420px;">
+                <svg viewBox="0 0 1000 500" style="width: 100%; height: 100%;"></svg>
+            </div>
+            <div class="travel-stats">
+                <span class="country-count">0</span> countries · 
+                <span class="world-percentage">0%</span> of the world
+            </div>
+        </div>
         
         <div class="photo-gallery collapsed" id="photo-gallery">
             <div class="photo-item" onclick="openLightbox(0)">
@@ -1043,82 +1091,82 @@
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
-            <div class="photo-item" onclick="openLightbox(5)">
+            <div class="photo-item" onclick="openLightbox(6)">
                 <img src="images/banff.png" alt="Banff, Canada">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
-            <div class="photo-item" onclick="openLightbox(5)">
+            <div class="photo-item" onclick="openLightbox(7)">
                 <img src="images/zion.png" alt="Zion National Park, United States">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
-            <div class="photo-item" onclick="openLightbox(5)">
+            <div class="photo-item" onclick="openLightbox(8)">
                 <img src="images/bariloche.png" alt="San Carlos de Bariloche, Argentina">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
-            <div class="photo-item" onclick="openLightbox(5)">
-                <img src="images/cape_town.png" alt="Capte Town, South Africa">
+            <div class="photo-item" onclick="openLightbox(9)">
+                <img src="images/cape_town.png" alt="Cape Town, South Africa">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
-            <div class="photo-item" onclick="openLightbox(5)">
+            <div class="photo-item" onclick="openLightbox(10)">
                 <img src="images/chamonix.png" alt="Chamonix, France">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
-            <div class="photo-item" onclick="openLightbox(5)">
+            <div class="photo-item" onclick="openLightbox(11)">
                 <img src="images/chile.png" alt="Putre, Chile">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
-            <div class="photo-item" onclick="openLightbox(5)">
+            <div class="photo-item" onclick="openLightbox(12)">
                 <img src="images/emosson.png" alt="Emosson Dam, Switzerland">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
-            <div class="photo-item" onclick="openLightbox(5)">
+            <div class="photo-item" onclick="openLightbox(13)">
                 <img src="images/kauai.png" alt="Kauai, United States">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
-            <div class="photo-item" onclick="openLightbox(5)">
+            <div class="photo-item" onclick="openLightbox(14)">
                 <img src="images/lugano.png" alt="Lake Lugano, Switzerland">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
-            <div class="photo-item" onclick="openLightbox(5)">
+            <div class="photo-item" onclick="openLightbox(15)">
                 <img src="images/mammoth.png" alt="Mammoth Lakes, United States">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
-            <div class="photo-item" onclick="openLightbox(5)">
-                <img src="images/paxos.png" alt="Paxos, United States">
+            <div class="photo-item" onclick="openLightbox(16)">
+                <img src="images/paxos.png" alt="Paxos, Greece">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
-            <div class="photo-item" onclick="openLightbox(5)">
+            <div class="photo-item" onclick="openLightbox(17)">
                 <img src="images/pyrenees.png" alt="Lac de Gaube, France">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
-            <div class="photo-item" onclick="openLightbox(5)">
+            <div class="photo-item" onclick="openLightbox(18)">
                 <img src="images/squamish.png" alt="Squamish, Canada">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
-            <div class="photo-item" onclick="openLightbox(5)">
+            <div class="photo-item" onclick="openLightbox(19)">
                 <img src="images/st_bernard.png" alt="Near the Col du Petit St. Bernard, France">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
-            <div class="photo-item" onclick="openLightbox(5)">
+            <div class="photo-item" onclick="openLightbox(20)">
                 <img src="images/redwoods.png" alt="Coastal Redwoods near Santa Cruz, United States">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
-            <div class="photo-item" onclick="openLightbox(5)">
+            <div class="photo-item" onclick="openLightbox(21)">
                 <img src="images/uyuni.png" alt="Salar de Uyuni, Bolivia">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
@@ -1131,17 +1179,6 @@
                 <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z"/>
             </svg>
         </button>
-
-        <div class="world-travel">
-            <h3>Countries Explored</h3>
-            <div id="world-map" style="width: 100%; height: 420px;">
-                <svg viewBox="0 0 1000 500" style="width: 100%; height: 100%;"></svg>
-            </div>
-            <div class="travel-stats">
-                <span class="country-count">0</span> countries · 
-                <span class="world-percentage">0%</span> of the world
-            </div>
-        </div>
     </section>
 
     <!-- Sports Section -->
@@ -1152,9 +1189,12 @@
         <div id="lightbox" class="lightbox">
             <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
             <div class="lightbox-content">
-                <span class="lightbox-nav lightbox-prev" onclick="changePhoto(-1)">‹</span>
-                <img id="lightbox-img" src="" alt="Adventure photo">
-                <span class="lightbox-nav lightbox-next" onclick="changePhoto(1)">›</span>
+                <div class="lightbox-image-container">
+                    <span class="lightbox-nav lightbox-prev" onclick="changePhoto(-1)">‹</span>
+                    <img id="lightbox-img" src="" alt="Travel photo">
+                    <span class="lightbox-nav lightbox-next" onclick="changePhoto(1)">›</span>
+                    <div id="lightbox-description" class="lightbox-description">Photo description will appear here</div>
+                </div>
             </div>
         </div>
 
@@ -1454,14 +1494,31 @@
 
         // Lightbox functionality
         let currentPhotoIndex = 0;
-        const photos = [
-            // Add your actual photo URLs here
-            'path-to-photo1.jpg',
-            'path-to-photo2.jpg',
-            'path-to-photo3.jpg',
-            'path-to-photo4.jpg',
-            'path-to-photo5.jpg',
-            'path-to-photo6.jpg'
+        
+        // Photo descriptions array (same order as photos in gallery)
+        const photoDescriptions = [
+            'Near Old Fort Point in Jasper, Canada',
+            'View of Granada and the Sierra Nevada from the Alhambra, Spain', 
+            'View of Koenigssee from Achenkanzel, Germany',
+            'Quilotoa Crater Lake, Ecuador',
+            'Fiescherhorn seen from Grindelwald, Switzerland',
+            'Refuge du Toubkal, Morocco',
+            'Sulphur Mountain in Banff, Canada',
+            'Canyon in Zion National Park, United States',
+            'San Carlos de Bariloche, Argentina',
+            'Kirstenbosch Botanical Garden near Cape Town, South Africa',
+            'Below Lac Blanc, Chamonix, France',
+            'Volcano sunrise in Putre, Chile',
+            'View from Mont Buet over the Barrage d\'Emosson, Switzerland',
+            'Hindu Monastery Kauai, United States',
+            'Storm approaching over Lake Lugano, Switzerland',
+            'Trailhead in Mammoth Lakes, United States',
+            'Tripitos Arch in Paxos, Greece',
+            'Lac de Gaube in the Pyrenees, France',
+            'Howe Sound in Squamish, Canada',
+            'Near the Col du Petit St. Bernard, France',
+            'Coastal Redwoods near Santa Cruz, United States',
+            'Salar de Uyuni, Bolivia'
         ];
 
         function openLightbox(index) {
@@ -1476,7 +1533,8 @@
         }
 
         function changePhoto(direction) {
-            currentPhotoIndex = (currentPhotoIndex + direction + photos.length) % photos.length;
+            const galleryImages = document.querySelectorAll('.photo-item img');
+            currentPhotoIndex = (currentPhotoIndex + direction + galleryImages.length) % galleryImages.length;
             updateLightboxImage();
         }
 
@@ -1484,6 +1542,14 @@
             const galleryImages = document.querySelectorAll('.photo-item img');
             if (galleryImages[currentPhotoIndex]) {
                 document.getElementById('lightbox-img').src = galleryImages[currentPhotoIndex].src;
+                // Update description
+                const descriptionElement = document.getElementById('lightbox-description');
+                if (descriptionElement && photoDescriptions[currentPhotoIndex]) {
+                    descriptionElement.textContent = photoDescriptions[currentPhotoIndex];
+                    console.log('Description updated:', photoDescriptions[currentPhotoIndex]); // Debug log
+                } else {
+                    console.log('Description not found for index:', currentPhotoIndex); // Debug log
+                }
             }
         }
 
@@ -1760,11 +1826,6 @@
                       .html(`${nm}${isVisited ? ' · ✅ visited' : ''}`);
                   })
                   .on('mouseleave', () => tooltip.style('opacity', 0));
-
-              // Legend
-              const legend = d3.select('.world-travel').append('div').attr('class','legend');
-              legend.append('span').text('Visited palette:');
-              visitedPalette.forEach(c => legend.append('span').attr('class','swatch').style('background', c));
 
               // Stats
               const count = visitedSet.size;
