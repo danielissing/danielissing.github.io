@@ -546,6 +546,57 @@
             }
         }
 
+        /* Collapsible book sections */
+        .books-grid.collapsed .book-card:nth-child(n+4) {
+            display: none;
+        }
+
+        .expand-books-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1.5rem auto 0;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            max-width: 200px;
+        }
+
+        .expand-books-btn:hover {
+            background: var(--light-green);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .expand-books-btn svg {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .expand-books-btn.expanded svg {
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 768px) {
+            .books-grid.collapsed .book-card:nth-child(n+3) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .books-grid.collapsed .book-card:nth-child(n+2) {
+                display: none;
+            }
+        }
+
         .photo-item {
             position: relative;
             overflow: hidden;
@@ -1289,7 +1340,7 @@
         <div class="books-container">
             <div class="book-category">
                 <h3>Fiction</h3>
-                <div class="books-grid">
+                <div class="books-grid collapsed" id="fiction-books">
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
@@ -1502,11 +1553,17 @@
                         </div>
                     </div>
                 </div>
+                <button class="expand-books-btn" id="expand-fiction-btn" onclick="toggleBooks('fiction')">
+                    <span id="expand-fiction-text">Show More Books</span>
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z"/>
+                    </svg>
+                </button>
             </div>
 
             <div class="book-category">
                 <h3>Non-Fiction</h3>
-                <div class="books-grid">
+                <div class="books-grid collapsed" id="nonfiction-books">
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
@@ -1622,6 +1679,12 @@
                         </div>
                     </div>
                 </div>
+                <button class="expand-books-btn" id="expand-nonfiction-btn" onclick="toggleBooks('nonfiction')">
+                    <span id="expand-nonfiction-text">Show More Books</span>
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z"/>
+                    </svg>
+                </button>
                 </div>
             </div>
     </section>
@@ -1868,6 +1931,22 @@
                 text.textContent = 'Show More Photos';
             } else {
                 text.textContent = 'Show Fewer Photos';
+            }
+        }
+
+        // Books expand/collapse functionality
+        function toggleBooks(section) {
+            const booksGrid = document.getElementById(section + '-books');
+            const btn = document.getElementById('expand-' + section + '-btn');
+            const text = document.getElementById('expand-' + section + '-text');
+            
+            booksGrid.classList.toggle('collapsed');
+            btn.classList.toggle('expanded');
+            
+            if (booksGrid.classList.contains('collapsed')) {
+                text.textContent = 'Show More Books';
+            } else {
+                text.textContent = 'Show Fewer Books';
             }
         }
 
