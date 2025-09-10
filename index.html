@@ -450,6 +450,57 @@
             margin: 2rem 0;
         }
 
+        /* Collapsible photo gallery */
+        .photo-gallery.collapsed .photo-item:nth-child(n+7) {
+            display: none;
+        }
+
+        .expand-gallery-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 2rem auto;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            max-width: 200px;
+        }
+
+        .expand-gallery-btn:hover {
+            background: var(--light-green);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .expand-gallery-btn svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .expand-gallery-btn.expanded svg {
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 768px) {
+            .photo-gallery.collapsed .photo-item:nth-child(n+5) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .photo-gallery.collapsed .photo-item:nth-child(n+3) {
+                display: none;
+            }
+        }
+
         .photo-item {
             position: relative;
             overflow: hidden;
@@ -816,8 +867,9 @@
             <li><a href="#about" class="nav-link">About</a></li>
             <li><a href="#cv" class="nav-link">CV</a></li>
             <li><a href="#projects" class="nav-link">Coding</a></li>
+            <li><a href="#travel" class="nav-link">Travel</a></li>
+            <li><a href="#sports" class="nav-link">Sports</a></li>
             <li><a href="#writing" class="nav-link">Writing</a></li>
-            <li><a href="#adventures" class="nav-link">Nature</a></li>
             <li><a href="#books" class="nav-link">Reading</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
@@ -856,7 +908,7 @@
         <h2>About Me</h2>
         <div class="about-container">
             <div class="about-image">
-                <img src="images/daniel.jpg" alt="Daniel Issing">
+                <img src="images/daniel.png" alt="Daniel Issing">
             </div>
             <div class="about-content">
                 <p>
@@ -939,27 +991,11 @@
         </div>
     </section>
 
-    <!-- Writing Section -->
-    <section id="writing">
-        <h2>Writing</h2>
-        <div id="blog-posts" class="blog-posts">
-            <!-- Blog posts will be loaded here -->
-            <div class="blog-post">
-                <div class="blog-date">Loading posts...</div>
-                <div class="blog-title">Fetching from Medium</div>
-                <div class="blog-excerpt">Your latest articles will appear here.</div>
-            </div>
-        </div>
-        <div class="load-more">
-            <button onclick="loadMorePosts()">Load More Posts</button>
-        </div>
-    </section>
-
-    <!-- Adventures Section -->
-    <section id="adventures">
-        <h2>The Great Outdoors</h2>
+    <!-- Travel Section -->
+    <section id="travel">
+        <h2>Travel Adventures</h2>
         
-        <div class="photo-gallery">
+        <div class="photo-gallery collapsed" id="photo-gallery">
             <div class="photo-item" onclick="openLightbox(0)">
                 <img src="images/jasper.jpg" alt="Jasper, Canada">
                 <div style="padding: 2rem; color: white; text-align: center;">
@@ -1072,6 +1108,28 @@
             </div>
         </div>
 
+        <button class="expand-gallery-btn" id="expand-gallery-btn" onclick="toggleGallery()">
+            <span id="expand-text">Show More Photos</span>
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z"/>
+            </svg>
+        </button>
+
+        <div class="world-travel">
+            <h3>Countries Visited</h3>
+            <div id="world-map">
+                <svg width="100%" height="500"></svg>
+            </div>
+            <div class="travel-stats">
+                I've visited <span class="country-count">--</span> countries so far, which is <span class="world-percentage">--%</span> of the world!
+            </div>
+        </div>
+    </section>
+
+    <!-- Sports Section -->
+    <section id="sports">
+        <h2>Trail Running & Adventures</h2>
+
         <!-- Lightbox -->
         <div id="lightbox" class="lightbox">
             <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
@@ -1083,7 +1141,7 @@
         </div>
 
         <div class="adventure-highlights">
-            <h3>Trail Running & Cycling Highlights</h3>
+            <h3>Racing & Adventure Highlights</h3>
             <div class="adventure-list">
                 <div class="adventure-item">
                     <h4>Ultra Trail du Mont Blanc (2021)</h4>
@@ -1102,6 +1160,22 @@
                     <p>The original Via Alpina is a trek that crosses the Alps from East to West, traversing 8 different countries. With my wife, we drew our own version of it that could be completed on a bike.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Writing Section -->
+    <section id="writing">
+        <h2>Writing</h2>
+        <div id="blog-posts" class="blog-posts">
+            <!-- Blog posts will be loaded here -->
+            <div class="blog-post">
+                <div class="blog-date">Loading posts...</div>
+                <div class="blog-title">Fetching from Medium</div>
+                <div class="blog-excerpt">Your latest articles will appear here.</div>
+            </div>
+        </div>
+        <div class="load-more">
+            <button onclick="loadMorePosts()">Load More Posts</button>
         </div>
     </section>
 
@@ -1466,6 +1540,22 @@
         function loadMorePosts() {
             // This would load more posts in a real implementation
             alert('This would load more posts from Medium');
+        }
+
+        // Gallery expand/collapse functionality
+        function toggleGallery() {
+            const gallery = document.getElementById('photo-gallery');
+            const btn = document.getElementById('expand-gallery-btn');
+            const text = document.getElementById('expand-text');
+            
+            gallery.classList.toggle('collapsed');
+            btn.classList.toggle('expanded');
+            
+            if (gallery.classList.contains('collapsed')) {
+                text.textContent = 'Show More Photos';
+            } else {
+                text.textContent = 'Show Fewer Photos';
+            }
         }
 
         // Load Medium posts when page loads
