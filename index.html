@@ -38,8 +38,15 @@
             --water2: #eaf4ff;
             --land:   #e9edf2;
             --stroke: #9aa8b8;
+            --accent-gray: #808080;
             --visited-stroke: #ffffff;
             --graticule: rgba(48,72,96,.25);
+        }
+
+        a {
+            color: var(--accent-gray);
+            text-decoration: none;
+            border-bottom: 1px dotted currentColor;
         }
 
         [data-theme="dark"] {
@@ -1008,7 +1015,7 @@
     <!-- Hero Section -->
     <section id="hero">
         <h1>Daniel Issing</h1>
-        <i><p class="tagline">"Irony is the song of a bird that has come to love its cage"</p></i>
+        <i><p class="tagline">Irony is the song of a bird that has come to love its cage</p></i>
         <div class="social-links">
             <a href="https://linkedin.com/in/daniel-issing" target="_blank" title="LinkedIn">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1060,8 +1067,12 @@
             <img src="icons/givewell.png" alt="GiveWell" class="cv-icon">
             <div class="cv-content">
                 <h3>Senior Research Associate</h3>
-                <p><strong><a href = "https://www.givewell.org/">GiveWell</a></strong></p>
-                <p>Finding the most cost-effective giving opportunities.</p>
+                <p><strong><a href = "https://www.givewell.org/" target="_blank">GiveWell</a></strong></p>
+                <p>As a researcher at GiveWell, I explore new areas of grantmaking to expand the organization's footprint
+                    and enable them to unlock new funding opportunities. GiveWell focuses on identifying the most
+                    cost-effective programs to ensure that donations have the highest impact on global well-being. 
+                    This work includes assessing the evidence behind programs, modeling disease burden, learning about the strengths and weaknesses of the implmenting organization,
+                    diving into M&E data, among many other things. </p>
             </div>
         </div>
 
@@ -1069,8 +1080,12 @@
             <img src="icons/shift.png" alt="Shift Technology" class="cv-icon">
             <div class="cv-content">
                 <h3>Data Science Team Lead</h3>
-                <p><strong><a href = "https://www.shift-technology.com/">Shift Technology</a> </strong></p>
-                <p>AI-powered insurance fraud detection.</p>
+                <p><strong><a href = "https://www.shift-technology.com/" target="_blank">Shift Technology</a> </strong></p>
+                <p>At Shift, I helped develop and customize an AI-powered fraud detection software for insurance companies. I oversaw a team that worked with major
+                    insurers in the UK and Germany, with the goal of supporting their fraud teams to identify suspicious cases quickly and reliably.
+                    You can find a couple of interesting case studies to see how this works at this
+                     <a href = "https://www.shift-technology.com/resources/case-studies" target="_blank">link</a>.
+                </p>
             </div>
         </div>
 
@@ -1078,8 +1093,12 @@
             <img src="icons/sfl.png" alt="Students For Liberty" class="cv-icon">
             <div class="cv-content">
                 <h3>Asia Program Manager</h3>
-                <p><strong><a href = "https://studentsforliberty.org/">Students For Liberty</a></strong></p>
-                <p>Grassroots movement for classical liberalism on university campuses.</p>
+                <p><strong><a href = "https://studentsforliberty.org/" target="_blank">Students For Liberty</a></strong></p>
+                <p>After volunteering with them for many years, during which I organized numerous conferences, talks and seminars and launched a student magazine, 
+                    I joined SFL's staff full-time to expand their chapters and activities across Asia. I coordinated with student groups from Afghanistan to Indonesia, 
+                    helping establish new chapters, training local organizers, and adapting programming for diverse cultural contexts. 
+                    I'm very grateful for the many inspiring individuals I met during that time, who went above and beyond to promote a message of freedom, peaceful coexistence and open dialogue in very challenging or outrightly hostile environments.
+                </p>
             </div>
         </div>
 
@@ -1087,13 +1106,13 @@
             <img src="icons/lmu.png" alt="LMU Munich" class="cv-icon">
             <div class="cv-content">
                 <h3>MSc in Theoretical and Mathematical Physics</h3>
-                <p><strong><a href = "https://www.lmu.de/en/">Ludwig Maximilian University Munich</a> &
-                     <a href = "https://lapth.cnrs.fr/en">LAPTh</a></strong></p>
-                <p>I was accepted into the joint LMU & TUM <a href = "https://www.theorie.physik.uni-muenchen.de/TMP/index.html">elite master course on theoretical and mathematical physics</a> for my graduate studies. 
-                    My thesis (which you can find <a href = "https://www.theorie.physik.uni-muenchen.de/TMP/theses/issingthesis.pdf">here</a>)
+                <p><strong><a href = "https://www.lmu.de/en/" target="_blank">Ludwig Maximilian University Munich</a> &
+                     <a href = "https://lapth.cnrs.fr/en" target="_blank">LAPTh</a></strong></p>
+                <p>I was accepted into the joint LMU & TUM <a href = "https://www.theorie.physik.uni-muenchen.de/TMP/index.html" target="_blank">elite master course on theoretical and mathematical physics</a> for my graduate studies. 
+                    My thesis (which you can find <a href = "https://www.theorie.physik.uni-muenchen.de/TMP/theses/issingthesis.pdf" target="_blank">here</a>)
                     was written under the supervision of Luc Frappat and Eric Ragoucy at the Labortoire d'Annecy-le-Vieux de Physique Théorique (LAPTh). The collaboration resulted in a paper
-                    (published in J.Phys.A), in which we showed how to constructed the center of an elliptic algebra that's relevant to the study of quantum integrable systems. If all of this
-                    sounds like mumbo jumbo to you, <a href = "https://daniel-issing.medium.com/particles-symmetries-and-the-weird-world-of-quantum-mechanics-69f87968a778">here's my attempt</a> to provide a non-technical, high-level overview of that work.
+                     in which we showed how to constructed the center of an elliptic algebra that's relevant to the study of quantum integrable systems. If all of this
+                    sounds like mumbo jumbo to you, <a href = "https://daniel-issing.medium.com/particles-symmetries-and-the-weird-world-of-quantum-mechanics-69f87968a778" target="_blank">here's my attempt</a> to provide a non-technical, high-level overview of that work.
             </div>
         </div>
 
@@ -1101,9 +1120,14 @@
             <img src="icons/heidelberg.png" alt="Heidelberg University" class="cv-icon">
             <div class="cv-content">
                 <h3>BSc in Physics</h3>
-                <p><strong><a href = "https://www.uni-heidelberg.de/en">Ruprecht Karls University Heidelberg</a> &
-                     <a href = "https://carleton.ca/">Carleton University, Ottawa</a></strong></p>
-                <p>Thesis: Bethe ansatz and quench dynamics for integrable quantum systems.</p>
+                <p><strong><a href = "https://www.uni-heidelberg.de/en" target="_blank">Ruprecht Karls University Heidelberg</a> &
+                     <a href = "https://carleton.ca/" target="_blank">Carleton University, Ottawa</a></strong></p>
+                <p>I went into physics for its promise to offer a glimpse into the fabric of reality at its most fundamental level. 
+                    My specialization was quantum mechanics, or, more precisely, lattice models for which the Schrödinger equation could be solved analytically.
+                    My thesis, written under the supervision of Tilman Enss, dealt with non-equilibrium dynamics (quantum quenches) for just such systems.
+                    <br><br>
+                    As part of my undergrad degree, I also spent a year in Canada, which was a formative experience for me. I can't recommend studying abroad enough to broaden your horizon and learn to be independent.
+                    </p>
             </div>
         </div>
     </section>
@@ -1119,7 +1143,7 @@
                     <p>A benchmark suite for evaluating AI models on mathematical problem-solving tasks.</p>
                     <p style="margin-top: 1rem;">Some details.</p>
                     <p style="margin-top: 1rem;">
-                        <a href="https://github.com/danielissing/euler" target="_blank" style="color: var(--accent-blue);">View on GitHub →</a>
+                        <a href="https://github.com/danielissing/euler" target="_blank" >View on GitHub →</a>
                     </p>
                 </div>
             </div>
@@ -1135,7 +1159,7 @@
                     <p>A Monte Carlo model that predicts race times based on training data, weather conditions, and course elevation profiles.</p>
                     <p style="margin-top: 1rem;">Integrated with Strava API for automatic training data collection and provides personalized pacing strategies.</p>
                     <p style="margin-top: 1rem;">
-                        <a href="https://github.com/danielissing/race-predictor" target="_blank" style="color: var(--accent-blue);">View on GitHub →</a>
+                        <a href="https://github.com/danielissing/race-predictor" target="_blank" >View on GitHub →</a>
                     </p>
                 </div>
             </div>
@@ -1765,11 +1789,11 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780816624379-M.jpg" alt="The Anti-Politics Machine">
+                                <img src="https://covers.openlibrary.org/b/isbn/9780805080124-M.jpg" alt="The Unfolding of Language">
                             </div>
                             <div class="book-back">
-                                <h3>The Anti-Politics Machine</h3>
-                                <p>James Ferguson</p>
+                                <h3>The Unfolding of Language</h3>
+                                <p>Guy Deutscher</p>
                             </div>
                         </div>
                     </div>
@@ -1976,7 +2000,7 @@
                     <div class="blog-post">
                         <div class="blog-title">Unable to load posts</div>
                         <div class="blog-excerpt">
-                            Please visit my <a href="https://medium.com/@${mediumUsername}" target="_blank" style="color: var(--accent-blue);">Medium profile</a> to read my articles.
+                            Please visit my <a href="https://medium.com/@${mediumUsername}" target="_blank" >Medium profile</a> to read my articles.
                         </div>
                     </div>
                 `;
