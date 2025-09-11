@@ -406,14 +406,27 @@
             padding: 2rem;
         }
 
-        .project-video {
+        .project-media {
             width: 100%;
-            height: 200px;
+            height: 250px;
             background: var(--light-bg);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--light-green);
+        }
+
+        .project-media iframe,
+        .project-media img,
+        .project-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-media .placeholder {
+            color: var(--light-text);
+            font-style: italic;
         }
 
         .tech-stack {
@@ -1134,12 +1147,20 @@
 
     <!-- Projects Section -->
     <section id="projects">
-        <h2>Featured Projects</h2>
-        
+        <h2>Coding</h2>
+            <p style="text-align: center; color: var(--light-text); font-style: italic; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.7;">
+                A selection on personal coding projects I've been working on. 
+                You can find more examples on my <a href="https://github.com/danielissing/" target="_blank" >GitHub page.</a> </p>
         <div class="projects-grid">
+
             <div class="project-card">
-                <div class="project-content">
-                    <h3>AI Math Benchmark</h3>
+                <div class="project-content" style="padding-bottom: 1rem;">
+                    <h3>LLM Mathematical Reasoning Benchmark</h3>
+                </div>
+                <div class="project-media">
+                    <img src="images/euler.png" ></img>
+                </div>
+                <div class="project-content" style="padding-top: 1rem;">
                     <p>A benchmark suite for evaluating AI models on mathematical problem-solving tasks.</p>
                     <p style="margin-top: 1rem;">Some details.</p>
                     <p style="margin-top: 1rem;">
@@ -1149,13 +1170,13 @@
             </div>
 
             <div class="project-card">
-                <div class="project-video">
-                    <div style="text-align: center;">
-                        <iframe src="videos/app_demo.mp4" width="100%" height="200"></iframe>
-                    </div>
-                </div>
-                <div class="project-content">
+                <div class="project-content" style="padding-bottom: 1rem;">
                     <h3>Personal Race Time Predictor</h3>
+                </div>
+                <div class="project-media">
+                    <iframe src="videos/app_demo.mp4"></iframe>
+                </div>
+                <div class="project-content" style="padding-top: 1rem;">
                     <p>A Monte Carlo model that predicts race times based on training data, weather conditions, and course elevation profiles.</p>
                     <p style="margin-top: 1rem;">Integrated with Strava API for automatic training data collection and provides personalized pacing strategies.</p>
                     <p style="margin-top: 1rem;">
