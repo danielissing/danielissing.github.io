@@ -10,6 +10,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <!-- MathJax  -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         * {
             margin: 0;
@@ -1056,8 +1059,8 @@
         <div class="cv-item">
             <img src="icons/givewell.png" alt="GiveWell" class="cv-icon">
             <div class="cv-content">
-                <h3>Researcher</h3>
-                <p><strong>GiveWell</strong></p>
+                <h3>Senior Research Associate</h3>
+                <p><strong><a href = "https://www.givewell.org/">GiveWell</a></strong></p>
                 <p>Finding the most cost-effective giving opportunities.</p>
             </div>
         </div>
@@ -1066,7 +1069,7 @@
             <img src="icons/shift.png" alt="Shift Technology" class="cv-icon">
             <div class="cv-content">
                 <h3>Data Science Team Lead</h3>
-                <p><strong>Shift Technology </strong></p>
+                <p><strong><a href = "https://www.shift-technology.com/">Shift Technology</a> </strong></p>
                 <p>AI-powered insurance fraud detection.</p>
             </div>
         </div>
@@ -1075,7 +1078,7 @@
             <img src="icons/sfl.png" alt="Students For Liberty" class="cv-icon">
             <div class="cv-content">
                 <h3>Asia Program Manager</h3>
-                <p><strong>Students For Liberty</strong></p>
+                <p><strong><a href = "https://studentsforliberty.org/">Students For Liberty</a></strong></p>
                 <p>Grassroots movement for classical liberalism on university campuses.</p>
             </div>
         </div>
@@ -1084,8 +1087,13 @@
             <img src="icons/lmu.png" alt="LMU Munich" class="cv-icon">
             <div class="cv-content">
                 <h3>MSc in Theoretical and Mathematical Physics</h3>
-                <p><strong>Ludwig Maximilian University Munich & LAPTh</strong></p>
-                <p>Thesis: The Quantum Determinant of the Elliptic Quantum Algebra Aq,p(gl N)</p>
+                <p><strong><a href = "https://www.lmu.de/en/">Ludwig Maximilian University Munich</a> &
+                     <a href = "https://lapth.cnrs.fr/en">LAPTh</a></strong></p>
+                <p>I was accepted into the joint LMU & TUM <a href = "https://www.theorie.physik.uni-muenchen.de/TMP/index.html">elite master course on theoretical and mathematical physics</a> for my graduate studies. 
+                    My thesis (which you can find <a href = "https://www.theorie.physik.uni-muenchen.de/TMP/theses/issingthesis.pdf">here</a>)
+                    was written under the supervision of Luc Frappat and Eric Ragoucy at the Labortoire d'Annecy-le-Vieux de Physique Théorique (LAPTh). The collaboration resulted in a paper
+                    (published in J.Phys.A), in which we showed how to constructed the center of an elliptic algebra that's relevant to the study of quantum integrable systems. If all of this
+                    sounds like mumbo jumbo to you, <a href = "https://daniel-issing.medium.com/particles-symmetries-and-the-weird-world-of-quantum-mechanics-69f87968a778">here's my attempt</a> to provide a non-technical, high-level overview of that work.
             </div>
         </div>
 
@@ -1093,8 +1101,9 @@
             <img src="icons/heidelberg.png" alt="Heidelberg University" class="cv-icon">
             <div class="cv-content">
                 <h3>BSc in Physics</h3>
-                <p><strong>Ruprecht Karls University Heidelberg & Carleton University, Ottawa</strong></p>
-                <p>Thesis: [TO ADD].</p>
+                <p><strong><a href = "https://www.uni-heidelberg.de/en">Ruprecht Karls University Heidelberg</a> &
+                     <a href = "https://carleton.ca/">Carleton University, Ottawa</a></strong></p>
+                <p>Thesis: Bethe ansatz and quench dynamics for integrable quantum systems.</p>
             </div>
         </div>
     </section>
@@ -1606,7 +1615,6 @@
                             <div class="book-back">
                                 <h3>Why We Get Sick</h3>
                                 <p>Randolph Nesse & George Williams</p>
-                                <p>The New Science of Darwinian Medicine</p>
                             </div>
                         </div>
                     </div>
@@ -1618,7 +1626,6 @@
                             <div class="book-back">
                                 <h3>The Secret of Our Success</h3>
                                 <p>Joseph Henrich</p>
-                                <p>How Culture Is Driving Human Evolution</p>
                             </div>
                         </div>
                     </div>
@@ -1631,6 +1638,94 @@
                                 <h3>Seeing Like a State</h3>
                                 <p>James C. Scott</p>
                                 <p>How Certain Schemes to Improve the Human Condition Have Failed</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card" onclick="flipBook(this)">
+                        <div class="book-inner">
+                            <div class="book-front">
+                                <img src="https://covers.openlibrary.org/b/isbn/9781476733500-M.jpg" alt="The Gene">
+                            </div>
+                            <div class="book-back">
+                                <h3>The Gene</h3>
+                                <p>Siddharta Mukherjee</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card" onclick="flipBook(this)">
+                        <div class="book-inner">
+                            <div class="book-front">
+                                <img src="https://covers.openlibrary.org/b/isbn/9780061452062-M.jpg" alt="The Rational Optimist">
+                            </div>
+                            <div class="book-back">
+                                <h3>The Rational Optimist</h3>
+                                <p>Matt Ridley</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card" onclick="flipBook(this)">
+                        <div class="book-inner">
+                            <div class="book-front">
+                                <img src="https://covers.openlibrary.org/b/isbn/9780465007844-M.jpg" alt="Bureaucracy">
+                            </div>
+                            <div class="book-back">
+                                <h3>Bureaucracy</h3>
+                                <p>James Q. Wilson</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card" onclick="flipBook(this)">
+                        <div class="book-inner">
+                            <div class="book-front">
+                                <img src="https://covers.openlibrary.org/b/isbn/9780691147215-M.jpg" alt="Honeybee Democracy">
+                            </div>
+                            <div class="book-back">
+                                <h3>Honeybee Democracy</h3>
+                                <p>Thomas D. Seeley</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card" onclick="flipBook(this)">
+                        <div class="book-inner">
+                            <div class="book-front">
+                                <img src="https://covers.openlibrary.org/b/isbn/9780812690682-M.jpg" alt="The Machinery of Freedom">
+                            </div>
+                            <div class="book-back">
+                                <h3>The Machinery Of Freedom</h3>
+                                <p>David D. Friedman</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card" onclick="flipBook(this)">
+                        <div class="book-inner">
+                            <div class="book-front">
+                                <img src="https://covers.openlibrary.org/b/isbn/9780195037944-M.jpg" alt="Albion's Seed">
+                            </div>
+                            <div class="book-back">
+                                <h3>Albion's Seed</h3>
+                                <p>David Hackett Fisher</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card" onclick="flipBook(this)">
+                        <div class="book-inner">
+                            <div class="book-front">
+                                <img src="https://covers.openlibrary.org/b/isbn/9780061146657-M.jpg" alt="The Sleepwalkers">
+                            </div>
+                            <div class="book-back">
+                                <h3>The Sleepwalkers</h3>
+                                <p>Christopher Clark</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card" onclick="flipBook(this)">
+                        <div class="book-inner">
+                            <div class="book-front">
+                                <img src="https://covers.openlibrary.org/b/isbn/9780465094257-M.jpg" alt="Lost in Math">
+                            </div>
+                            <div class="book-back">
+                                <h3>Lost in Math</h3>
+                                <p>Sabine Hossenfelder</p>
                             </div>
                         </div>
                     </div>
