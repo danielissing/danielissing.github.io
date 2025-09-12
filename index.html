@@ -768,18 +768,132 @@
             margin-top: 3rem;
         }
 
-        .adventure-list {
+        .adventure-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .adventure-item {
-            padding: 1rem;
-            background: linear-gradient(135deg, rgba(45, 90, 61, 0.1), transparent);
-            border-radius: 10px;
-            border-left: 3px solid var(--primary-green);
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 280px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .flip-card-front {
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flip-card-back {
+            background: var(--white);
+            transform: rotateY(180deg);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .flip-card-image {
+            width: 100%;
+            height: 200px;
+            background: var(--light-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            font-style: italic;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flip-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .flip-card-title {
+            padding: 1rem 1.5rem;
+            background: var(--white);
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .flip-card-title h4 {
+            color: var(--primary-green);
+            margin: 0;
+            font-size: 1.1rem;
+            line-height: 1.3;
+        }
+
+        .flip-card-back h4 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .flip-card-back p {
+            color: var(--dark-text);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .flip-indicator {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .adventure-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            
+            .flip-card {
+                height: 320px;
+            }
         }
 
         /* World Travel Map */
@@ -845,6 +959,12 @@
             perspective: 1000px;
             height: 220px;
             cursor: pointer;
+            transition: all 0.6s ease;
+        }
+
+        .book-card.flipped {
+            height: 420px;
+            z-index: 10;
         }
 
         .book-inner {
@@ -883,8 +1003,29 @@
             background: var(--white);
             transform: rotateY(180deg);
             color: var(--dark-text);
-            font-size: 0.875rem;
-            padding: 1.5rem;
+            font-size: 0.8rem;
+            padding: 1rem;
+            justify-content: flex-start;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .book-back h3 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .book-back .book-author {
+            color: var(--light-text);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .book-back .book-review {
+            color: var(--dark-text);
+            font-size: 0.85rem;
+            line-height: 1.4;
         }
 
         .book-title {
@@ -915,7 +1056,7 @@
         }
 
         .contact-form {
-            max-width: 600px;
+            max-width: 800px;
             margin: 2rem auto;
             background: var(--white);
             padding: 3rem;
@@ -955,7 +1096,7 @@
 
         .form-group textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 180px;
         }
 
         .submit-btn {
@@ -1018,9 +1159,9 @@
             <li><a href="#cv" class="nav-link">CV</a></li>
             <li><a href="#projects" class="nav-link">Coding</a></li>
             <li><a href="#travel" class="nav-link">Travel</a></li>
-            <li><a href="#sports" class="nav-link">Sports</a></li>
+            <li><a href="#sports" class="nav-link">Endurance</a></li>
             <li><a href="#writing" class="nav-link">Writing</a></li>
-            <li><a href="#books" class="nav-link">Reading</a></li>
+            <li><a href="#books" class="nav-link">Book Recs</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
     </nav>
@@ -1028,7 +1169,7 @@
     <!-- Hero Section -->
     <section id="hero">
         <h1>Daniel Issing</h1>
-        <i><p class="tagline">Irony is the song of a bird that has come to love its cage</p></i>
+        <i><p class="tagline">Irony is the song of a bird that has come to love its cage.</p></i>
         <div class="social-links">
             <a href="https://linkedin.com/in/daniel-issing" target="_blank" title="LinkedIn">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1148,8 +1289,7 @@
     <!-- Projects Section -->
     <section id="projects">
         <h2>Coding</h2>
-            <p style="text-align: center; color: var(--light-text); font-style: italic; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.7;">
-                A selection on personal coding projects I've been working on. 
+            <p style="margin-bottom: 2rem;"> A selection on personal coding projects I've been working on. 
                 You can find more examples on my <a href="https://github.com/danielissing/" target="_blank" >GitHub page.</a> </p>
         <div class="projects-grid">
 
@@ -1331,7 +1471,8 @@
 
     <!-- Sports Section -->
     <section id="sports">
-        <h2>Trail Running & Adventures</h2>
+        <h2>Running & Cycling</h2>
+            <p style="margin-bottom: 2rem;">Some text about long distance running + riding.</p>
 
         <!-- Lightbox -->
         <div id="lightbox" class="lightbox">
@@ -1347,23 +1488,77 @@
         </div>
 
         <div class="adventure-highlights">
-            <h3>Racing & Adventure Highlights</h3>
-            <div class="adventure-list">
-                <div class="adventure-item">
-                    <h4>Ultra Trail du Mont Blanc (2021)</h4>
-                    <p>Without a doubt the most famous trail running event in the world. I was lucky enough to win a lottery ticket for the 2021 edition. Crazy atmosphere.</p>
+            <div class="adventure-grid">
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-image">
+                                <span>UTMB 2021 image placeholder</span>
+                                <div class="flip-indicator">Click to read more</div>
+                            </div>
+                            <div class="flip-card-title">
+                                <h4>Ultra Trail du Mont Blanc (2021)</h4>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h4>Ultra Trail du Mont Blanc (2021)</h4>
+                            <p>Without a doubt the most famous trail running event in the world. I was lucky enough to win a lottery ticket for the 2021 edition. Crazy atmosphere.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="adventure-item">
-                    <h4>Eiger Ultra Trail (2022)</h4>
-                    <p>My longest race so far. Around 260km and 18,000 vertical meters. Three days, two nights, a few hours of sleep.</p>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-image">
+                                <span>Eiger Ultra Trail image placeholder</span>
+                                <div class="flip-indicator">Click to read more</div>
+                            </div>
+                            <div class="flip-card-title">
+                                <h4>Eiger Ultra Trail (2022)</h4>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h4>Eiger Ultra Trail (2022)</h4>
+                            <p>My longest race so far. Around 260km and 18,000 vertical meters. Three days, two nights, a few hours of sleep.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="adventure-item">
-                    <h4>GR 20 (2021)</h4>
-                    <p>Corsica's famous (and technical) long-distance hiking trail. Ran it with a friend in full autonomy over the course of four days..</p>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-image">
+                                <span>GR 20 Corsica image placeholder</span>
+                                <div class="flip-indicator">Click to read more</div>
+                            </div>
+                            <div class="flip-card-title">
+                                <h4>GR 20 (2021)</h4>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h4>GR 20 (2021)</h4>
+                            <p>Corsica's famous (and technical) long-distance hiking trail. Ran it with a friend in full autonomy over the course of four days.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="adventure-item">
-                    <h4>Via Alpina (2023)</h4>
-                    <p>The original Via Alpina is a trek that crosses the Alps from East to West, traversing 8 different countries. With my wife, we drew our own version of it that could be completed on a bike.</p>
+
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-image">
+                                <span>Via Alpina bike tour image placeholder</span>
+                                <div class="flip-indicator">Click to read more</div>
+                            </div>
+                            <div class="flip-card-title">
+                                <h4>Via Alpina (2023)</h4>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h4>Via Alpina (2023)</h4>
+                            <p>The original Via Alpina is a trek that crosses the Alps from East to West, traversing 8 different countries. With my wife, we drew our own version of it that could be completed on a bike.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1390,6 +1585,7 @@
     <!-- Books Section -->
     <section id="books">
         <h2>Favorite Books</h2>
+            <p style="margin-bottom: 2rem;">Some text about how this selection is always capturing a moment. Reviews on the back. </p>
         
         <div class="books-container">
             <div class="book-category">
@@ -1402,8 +1598,8 @@
                             </div>
                             <div class="book-back">
                                 <h3>The Feast of the Goat</h3>
-                                <p>Mario Vargas Llosa</p>
-                                <p>A Novel</p>
+                                <p class="book-author">Mario Vargas Llosa</p>
+                                <p class="book-review">A masterful exploration of power and corruption through the lens of Trujillo's dictatorship in the Dominican Republic. Llosa weaves together multiple perspectives to create a haunting portrait of tyranny.</p>
                             </div>
                         </div>
                     </div>
@@ -1413,9 +1609,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9780593087480-M.jpg" alt="The Books of Jacob">
                             </div>
                             <div class="book-back">
-                                <h3>The Books of Jacob</h3>
-                                <p>Olga Tokarczuk</p>
-                                <p>A Novel</p>
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
                             </div>
                         </div>
                     </div>
@@ -1425,8 +1619,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9782070780976-M.jpg" alt="The Kindly Ones">
                             </div>
                             <div class="book-back">
-                                <h3>Les Bienveillantes</h3>
-                                <p>Jonathan Littell</p>
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
                             </div>
                         </div>
                     </div>
@@ -1436,8 +1629,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9783596294336-M.jpg" alt="The Magic Mountain">
                             </div>
                             <div class="book-back">
-                                <h3>Der Zauberberg</h3>
-                                <p>Thomas Mann</p>
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
                             </div>
                         </div>
                     </div>
@@ -1447,8 +1639,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9780312421274-M.jpg" alt="The Corrections">
                             </div>
                             <div class="book-back">
-                                <h3>The Corrections</h3>
-                                <p>Jonathan Franzen</p>
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
                             </div>
                         </div>
                     </div>
@@ -1458,8 +1649,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9780156004800-M.jpg" alt="All the King's Men">
                             </div>
                             <div class="book-back">
-                                <h3>All the King's Men</h3>
-                                <p>Robert Penn Warren</p>
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
                             </div>
                         </div>
                     </div>
@@ -1469,8 +1659,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9780345417947-M.jpg" alt="The Cider House Rules">
                             </div>
                             <div class="book-back">
-                                <h3>The Cider House Rules</h3>
-                                <p>John Irving</p>
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
                             </div>
                         </div>
                     </div>
@@ -1481,8 +1670,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9780142000656-M.jpg" alt="East of Eden">
                             </div>
                             <div class="book-back">
-                                <h3>East of Eden</h3>
-                                <p>John Steinbeck</p>
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
                             </div>
                         </div>
                     </div>
@@ -1493,8 +1681,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9780140449013-M.jpg" alt="Faust">
                             </div>
                             <div class="book-back">
-                                <h3>Faust I</h3>
-                                <p>Johann Wolfgang von Goethe</p>
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
                             </div>
                         </div>
                     </div>
@@ -1505,8 +1692,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9780316066525-M.jpg" alt="Infinite Jest">
                             </div>
                             <div class="book-back">
-                                <h3>Infinite Jest</h3>
-                                <p>David Foster Wallace</p>
+                                <p class="book-review">A towering achievement in contemporary literature. Wallace's exploration of addiction, entertainment, and the human condition is both challenging and deeply rewarding. Essential reading.</p>
                             </div>
                         </div>
                     </div>
@@ -1516,8 +1702,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9782070212033-M.jpg" alt="The Plague">
                             </div>
                             <div class="book-back">
-                                <h3>La Peste</h3>
-                                <p>Albert Camus</p>
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
                             </div>
                         </div>
                     </div>
@@ -1528,8 +1713,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9782081246331-M.jpg" alt="The Map and the Territory">
                             </div>
                             <div class="book-back">
-                                <h3>La Carte et le Territoire</h3>
-                                <p>Michel Houellebecq</p>
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
                             </div>
                         </div>
                     </div>
@@ -1540,8 +1724,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9780547577531-M.jpg" alt="The Prague Cemetery">
                             </div>
                             <div class="book-back">
-                                <h3>The Prague Cemetery</h3>
-                                <p>Umberto Eco</p>
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
                             </div>
                         </div>
                     </div>
@@ -1552,8 +1735,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9780061148521-M.jpg" alt="The Unbearable Lightness of Being">
                             </div>
                             <div class="book-back">
-                                <h3>The Unbearable Lightness of Being</h3>
-                                <p>Milan Kundera</p>
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
                             </div>
                         </div>
                     </div>
@@ -1564,8 +1746,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9780156032520-M.jpg" alt="A Tale of Love and Darkness">
                             </div>
                             <div class="book-back">
-                                <h3>A Tale of Love and Darkness</h3>
-                                <p>Amos Oz</p>
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
                             </div>
                         </div>
                     </div>
@@ -1577,8 +1758,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9781681375663-M.jpg" alt="When We Cease to Understand the World">
                             </div>
                             <div class="book-back">
-                                <h3>When We Cease to Understand the World</h3>
-                                <p>Benjamín Labatut</p>
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
                             </div>
                         </div>
                     </div>
@@ -1589,8 +1769,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9780307387899-M.jpg" alt="The Road">
                             </div>
                             <div class="book-back">
-                                <h3>The Road</h3>
-                                <p>Cormac McCarthy</p>
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
                             </div>
                         </div>
                     </div>
@@ -1601,8 +1780,7 @@
                                 <img src="https://covers.openlibrary.org/b/isbn/9780375701429-M.jpg" alt="American Pastoral">
                             </div>
                             <div class="book-back">
-                                <h3>American Pastoral</h3>
-                                <p>Philip Roth</p>
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
                             </div>
                         </div>
                     </div>
@@ -2107,7 +2285,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.cv-item, .project-card, .adventure-item').forEach(el => {
+        document.querySelectorAll('.cv-item, .project-card, .flip-card').forEach(el => {
             observer.observe(el);
         });
 
@@ -2282,6 +2460,11 @@
               document.querySelector('.world-percentage').textContent = pct + '%';
           }).catch(err => console.error('World map error:', err));
           });
+
+        // Flip card functionality
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
 
     </script>
 </body>
