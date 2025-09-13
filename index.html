@@ -75,7 +75,7 @@
             background: var(--light-bg);
             transition: background 0.3s ease, color 0.3s ease;
         }
-        .world-travel { max-width: 980px; margin: 0 auto; }
+    
         #world-map { position: relative; width: 100%; height: 460px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 28px rgba(0,0,0,.08); background: transparent; }
         #world-map svg { display:block; }
         #world-map .sphere { fill: url(#oceanGradient); }
@@ -234,8 +234,8 @@
             }
         }
 
-        /* Hero Section */
-        #hero {
+        /* Home Section */
+        #home {
             text-align: center;
             background: linear-gradient(135deg, rgba(45, 90, 61, 0.1), rgba(59, 130, 196, 0.1));
             border-radius: 20px;
@@ -903,6 +903,8 @@
             border-radius: 15px;
             margin-top: 3rem;
             box-shadow: var(--shadow);
+            max-width: 980px; 
+            margin: 0 auto; 
         }
 
         .world-travel h3 {
@@ -1056,8 +1058,9 @@
         }
 
         .contact-form {
-            max-width: 800px;
-            margin: 2rem auto;
+            max-width: none;
+            width: 100%;
+            margin: 2rem 0;
             background: var(--white);
             padding: 3rem;
             border-radius: 20px;
@@ -1166,7 +1169,7 @@
         </ul>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Home Section -->
     <section id="home">
         <h1>Daniel Issing</h1>
         <i><p class="tagline">Irony is the song of a bird that has come to love its cage.</p></i>
@@ -1210,14 +1213,14 @@
                     You can learn more about my path <a href="#cv" class="nav-link">here</a>.<br><br>
 
                     I'm a generalist by temperament, a jack of many trades but master of few. I enjoy <a href="#coding" class="nav-link">coding</a>  and wrestling with math problems, 
-                    <a href="#books" class="nav-link">reading books</a> that cover the entire spectrum from astronomy to zoology, and <a href="#writing" class="nav-link">writing</a> about things big and small that capture my imagination. 
+                    <a href="#books" class="nav-link">reading</a> about topics from astronomy to zoology, and <a href="#writing" class="nav-link">writing</a> about things big and small that capture my imagination. 
                     While this likely bars me from becoming a true subject matter expert in any domain, I like to imagine that it lets me spot patterns and connections that others may miss.
-                    If there's a thread connecting all of the above, it's probably just an stubborn commitment to understanding how things actually work, whether that's AI, quantum computing or programs to alleviate global poverty. <br><br>
+                    If there's a thread connecting all of the above, it's probably just a stubborn commitment to understanding how things actually work, whether that's AI, quantum computing or programs to alleviate global poverty. <br><br>
 
                     And why limit my curiosity to intellectual pursuits? 
                     I'm an avid trail runner and cyclist, which has opened up new ways to explore my limits, some of which I've highlighted <a href="#exploits" class="nav-link">below</a>.
                     And I love connecting these exploits with <a href="#travel" class="nav-link">traveling</a> to new places, because even in our digital age, there is nothing quite like immersing yourself physically in a place.
-                    The hope is that all of this will teach me something about whether I, like the bird, should be approaching my cage with Camusian irony or refuse to go gentle into that good night. 
+                    The hope is that all of this will teach me something about whether I, like the bird, should be approaching the cage with Camusian irony or refuse to go gentle into that good night. 
                 
                 </p>
             </div>
@@ -1300,7 +1303,7 @@
     <!-- Projects Section -->
     <section id="coding">
         <h2>Coding</h2>
-            <p style="margin-bottom: 2rem;"> A selection on personal coding projects I've been working on. 
+            <p style="margin-bottom: 2rem; text-align: center;"> A selection on personal projects I've been working on. 
                 You can find more examples on my <a href="https://github.com/danielissing/" target="_blank" >GitHub page.</a> </p>
         <div class="projects-grid">
 
@@ -1309,7 +1312,7 @@
                     <h3>LLM Mathematical Reasoning Benchmark</h3>
                 </div>
                 <div class="project-media">
-                    <img src="images/euler.png" ></img>
+                    <img src="images/euler.png" alt="Euler Project">
                 </div>
                 <div class="project-content" style="padding-top: 1rem;">
                     <p>A benchmark suite for evaluating AI models on mathematical problem-solving tasks.</p>
@@ -1325,7 +1328,7 @@
                     <h3>Personal Race Time Predictor</h3>
                 </div>
                 <div class="project-media">
-                    <iframe src="videos/app_demo.mp4"></iframe>
+                    <video controls src="videos/app_demo.mp4" style="width:100%; height:100%; object-fit:cover;"></video>
                 </div>
                 <div class="project-content" style="padding-top: 1rem;">
                     <p>A Monte Carlo model that predicts race times based on training data, weather conditions, and course elevation profiles.</p>
@@ -1483,7 +1486,10 @@
     <!-- Sports Section -->
     <section id="exploits">
         <h2>Running & Cycling</h2>
-            <p style="margin-bottom: 2rem;">Some text about long distance running + riding.</p>
+            <p style="margin-bottom: 2rem;text-align: center;">There are many ways to test one's limit, but for me, nothing beats endurance sports. 
+                Especially when you can combine it with breathtaking views! Ever since I ran my first half marathon at age 16, I've been hooked, and have participated 
+                in  (and finished) over 35 ultramarathons. Below is a small selection of the most daunting, beautiful and at times soul-crushing exploits I foolishly signed up for.
+            </p>
 
         <!-- Lightbox -->
         <div id="lightbox" class="lightbox">
@@ -1596,8 +1602,11 @@
 
     <!-- Books Section -->
     <section id="books">
-        <h2>Favorite Books</h2>
-            <p style="margin-bottom: 2rem;">Some text about how this selection is always capturing a moment. Reviews on the back. </p>
+        <h2>Book Recommendations</h2>
+            <p style="margin-bottom: 2rem; text-align: center;">A list of favorite books is never static, not only because - hopefully - some of them are yet to be read.
+                Taste changes, once novel insights become self-evident truths, and sometimes I forget whether I actually liked a book or just wanted to. 
+                All that is to say that the selection below is necessarily a snapshot of a particular moment in time, 
+                but I don't think you'd regret picking up any of these. A few thoughts on what I liked about each book can be found by clicking on them. </p>
         
         <div class="books-container">
             <div class="book-category">
