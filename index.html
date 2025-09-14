@@ -1142,6 +1142,70 @@
                 right: 1rem;
             }
         }
+
+        /* ===== Mobile UX polish ===== */
+
+        /* readable line length on larger screens, centered */
+        :root { --readable: 70ch; }
+        .about-content p,
+        .project-content p,
+        .blog-excerpt,
+        .contact-form { max-width: var(--readable); margin-inline: auto; }
+
+        /* Clamp world map height and reduce section padding on phones */
+        #world-map { height: clamp(220px, 45vh, 460px); }
+
+        /* Make the top nav behave on phones */
+        .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1002;
+        display: none;
+        background: var(--white);
+        border: 0;
+        width: 45px; height: 45px;
+        border-radius: 50%;
+        box-shadow: var(--shadow);
+        font-size: 1.25rem;
+        cursor: pointer;
+        }
+        [data-theme="dark"] .menu-toggle { background: var(--white); }
+
+        @media (max-width: 768px) {
+        /* Stop forcing full-screen sections on phones */
+        section { min-height: auto; padding: 3.5rem 1rem; }
+
+        /* Option A: horizontal scroll "pills" */
+        /* nav ul { overflow-x: auto; white-space: nowrap; gap: .75rem; padding: .75rem 1rem; justify-content: flex-start; }
+        nav li { margin: 0; flex: 0 0 auto; } */
+
+        /* Option B (default here): real hamburger */
+        .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+        nav ul { display: none; }
+        nav ul.is-open { display: flex; flex-wrap: wrap; gap: .5rem 1rem; padding: 4rem 1rem 1rem; } /* room for fixed buttons */
+        nav li { margin: 0; }
+
+        /* Keep the theme toggle visible with the hamburger */
+        .theme-toggle { top: 1rem; right: 1rem; }
+
+        /* Books: make it one column and remove 3D flip on phones */
+        .books-grid { grid-template-columns: 1fr; }
+        .book-card { height: auto; }
+        .book-inner { transform: none !important; }
+        .book-front, .book-back {
+            position: relative; height: auto; box-shadow: none;
+        }
+        .book-back { display: none; }
+        .book-card.show-details .book-back { display: block; margin-top: .75rem; }
+        }
+
+        /* Slightly smaller nav text on compact screens so it doesn’t feel crammed */
+        @media (max-width: 420px) {
+        nav a { font-size: .95rem; }
+        }
+
+
     </style>
 </head>
 <body>
@@ -1154,9 +1218,13 @@
             <path d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z"/>
         </svg>
     </button>
+
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+    ☰
+    </button>
     <!-- Navigation -->
     <nav>
-        <ul>
+        <ul id="site-nav">
             <li><a href="#home" class="nav-link active">Home</a></li>
             <li><a href="#about" class="nav-link">About</a></li>
             <li><a href="#cv" class="nav-link">CV</a></li>
@@ -1515,12 +1583,15 @@
                                 <div class="flip-indicator">Click to read more</div>
                             </div>
                             <div class="flip-card-title">
-                                <h4>GR 20 (2021)</h4>
+                                <h4>GR 20</h4>
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h4>GR 20 (2021)</h4>
-                            <p>Corsica's famous (and technical) long-distance hiking trail. Ran it with a friend in full autonomy over the course of four days.</p>
+                            <h4>GR 20</h4>
+                            <p>The <a href = "https://www.le-gr20.fr/en">GR20</a> is one of the most famous long-distance hikes in France, traversing Corsica from north to south. It's also famously rocky and technical,
+                                especially the northern section. People usually hike it two weeks, but a friend and I decided we were going to try finish it in four days,
+                                carrying all of our gear with us. It was rough.
+                                </p>
                         </div>
                     </div>
                 </div>
@@ -1533,12 +1604,15 @@
                                 <div class="flip-indicator">Click to read more</div>
                             </div>
                             <div class="flip-card-title">
-                                <h4>Ultra Trail du Mont Blanc (2021)</h4>
+                                <h4>Ultra Trail du Mont Blanc</h4>
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h4>Ultra Trail du Mont Blanc (2021)</h4>
-                            <p>Without a doubt the most famous trail running event in the world. I was lucky enough to win a lottery ticket for the 2021 edition. Crazy atmosphere.</p>
+                            <h4>Ultra Trail du Mont Blanc </h4>
+                            <p>The atmosphere during the first 40k is absolutely bonkers, and the arrival after 170km is pure goosebumps. 
+                                There's a lot of justified criticism of the UTMB group, but end of the day they're putting on an amazing race and there's a reason why everyone wants to run it.
+                                Unfortunately, it takes a lot of time, money and luck to get into, so I doubt I'll be able to come back for a second lap. 
+                                <a href = "https://www.strava.com/activities/5869168768">Strava link</a>.</p>
                         </div>
                     </div>
                 </div>
@@ -1551,12 +1625,14 @@
                                 <div class="flip-indicator">Click to read more</div>
                             </div>
                             <div class="flip-card-title">
-                                <h4>Eiger Ultra Trail (2022)</h4>
+                                <h4>Eiger Ultra Trail</h4>
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h4>Eiger Ultra Trail (2022)</h4>
-                            <p>My longest race so far. Around 260km and 18,000 vertical meters. Three days, two nights, a few hours of sleep.</p>
+                            <h4>Eiger Ultra Trail</h4>
+                            <p>ThIis remains my longest race to date. The route wraps around the Eiger massive and includes lots of glaciers. 
+                                With 260km and around 18,000m of vertical gain, this one is no joke, and we slept very little during those three days and two nights we were out on the trails.
+                                <a href="https://daniel-issing.medium.com/tender-is-the-night-90e881be6e16">Race report.</a></p>
                         </div>
                     </div>
                 </div>
@@ -1573,8 +1649,9 @@
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h4>Via Alpina (2023)</h4>
-                            <p>The original Via Alpina is a trek that crosses the Alps from East to West, traversing 8 different countries. With my wife, we drew our own version of it that could be completed on a bike.</p>
+                            <h4>Via Alpina by bike</h4>
+                            <p>The <a href = "https://www.via-alpina.org/" >Via Alpina</a> is a long-distance trek follows the Alps from Monaco to Muggia near Trieste, traversing 8 different countries. For our honeymoon, my wife and I created a bike-friendly version of this trip and spent a month climbing pass after pass. 
+                                <a href = "https://daniel-issing.medium.com/via-alpina-vehentem-c6c884e2c32e">Travel log</a>.</p>
                         </div>
                     </div>
                 </div>
@@ -2486,6 +2563,32 @@
         function flipCard(card) {
             card.classList.toggle('flipped');
         }
+
+        // === Mobile hamburger ===
+        const menuBtn = document.querySelector('.menu-toggle');
+        const navList = document.getElementById('site-nav');
+        if (menuBtn && navList) {
+        menuBtn.addEventListener('click', () => {
+            const open = navList.classList.toggle('is-open');
+            menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        }
+
+        // === Books: on phones, use tap-to-reveal instead of flip ===
+        function flipBook(card) {
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            card.classList.toggle('show-details');
+            return;
+        }
+        card.classList.toggle('flipped');
+        }
+
+        // === Lazy load images; keep videos light ===
+        window.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('img').forEach(img => img.setAttribute('loading', 'lazy'));
+        document.querySelectorAll('video').forEach(v => v.setAttribute('preload', 'metadata'));
+        });
+
 
     </script>
 </body>
