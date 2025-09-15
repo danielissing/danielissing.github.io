@@ -1173,12 +1173,12 @@
 
 /* Adventure (running & cycling) cards: make back content readable */
 @media (max-width: 768px) {
-  .adventure-grid { grid-template-columns: 1fr; }
+  .adventure-grid { gap: 1rem; }
   .flip-card { height: auto; }
-  .flip-card-inner { min-height: 260px; }
+  .flip-card-inner { transform: none !important; min-height: 0; }
   .flip-card-front, .flip-card-back { position: relative; height: auto; }
-  .flip-card-back { align-items: flex-start; }
-  .flip-card-back p { font-size: .95rem; }
+  .flip-card-back { display: none; transform: none !important; }
+  .flip-card.show-details .flip-card-back { display: block; margin-top: .75rem; }
 }
 
 /* Books: disable 3D flip on phones; use tap-to-reveal text below cover */
@@ -1187,7 +1187,7 @@
   .book-card { height: auto; }
   .book-inner { transform: none !important; }
   .book-front, .book-back { position: relative; height: auto; backface-visibility: visible; }
-  .book-back { display: none; }
+  .book-back { transform: none !important; } /* un-mirror the text */
   .book-card.show-details .book-back { display: block; margin-top: .75rem; }
 }
 
@@ -1378,8 +1378,11 @@
                     <img loading="lazy" src="images/euler.png" alt="Euler Project">
                 </div>
                 <div class="project-content" style="padding-top: 1rem;">
-                    <p>A benchmark suite for evaluating AI models on mathematical problem-solving tasks.</p>
-                    <p style="margin-top: 1rem;">Some details.</p>
+                    <p>How good are state-of-the-art AI models at solving coding challenges that require the clever application
+                        of mathematical insights lest the program runs forever? 
+                    </p>
+                    <p style="margin-top: 1rem;">For this project, I pitted three LLMs against each other and challenged them to
+                        generate scripts for Project Euler problems of ever-increasing complexity. The results were surprising in many ways.</p>
                     <p style="margin-top: 1rem;">
                         <a href="https://github.com/danielissing/euler" target="_blank" >View on GitHub →</a>
                     </p>
@@ -1394,8 +1397,10 @@
                     <video preload="metadata" controls src="videos/app_demo.mp4" style="width:100%; height:100%; object-fit:cover;"></video>
                 </div>
                 <div class="project-content" style="padding-top: 1rem;">
-                    <p>A Monte Carlo model that predicts race times based on training data, weather conditions, and course elevation profiles.</p>
-                    <p style="margin-top: 1rem;">Integrated with Strava API for automatic training data collection and provides personalized pacing strategies.</p>
+                    <p>A Monte Carlo model that predicts race times based on past performance and course elevation profiles for each leg of the race.</p>
+                    <p style="margin-top: 1rem;">The app provides automatic integration with the Strava API to provide personalized pacing strategies. It 
+                        also lets use visualize each segment and provides valuable input for your crew.
+                    </p>
                     <p style="margin-top: 1rem;">
                         <a href="https://github.com/danielissing/race-predictor" target="_blank" >View on GitHub →</a>
                     </p>
@@ -1935,23 +1940,25 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9781846141812-M.jpg" alt="The Righteous Mind">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780674368309-M.jpg" alt="The Enigma of Reason">
                             </div>
                             <div class="book-back">
-                                <h4>The Righteous Mind</h4>
-                                <p class="book-author">Jonathan Haidt</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <h4>The Enigma of Reason</h4>
+                                <p>Hugo Mercier & Dan Sperber</p>
+                                <p class="book-review">This wonderful little book sets out to answer two questions: Why did reason evolve in the first place?
+                                    And why does it so often lead us astray? Their approach is an engaging and sometimes controversial defense of the claims
+                                    that reason can only be understood in a social context.</p>
                             </div>
                         </div>
                     </div>
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780674368309-M.jpg" alt="The Enigma of Reason">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9781846141812-M.jpg" alt="The Righteous Mind">
                             </div>
                             <div class="book-back">
-                                <h4>The Enigma of Reason</h4>
-                                <p>Hugo Mercier & Dan Sperber</p>
+                                <h4>The Righteous Mind</h4>
+                                <p class="book-author">Jonathan Haidt</p>
                                 <p class="book-review">PLACEHOLDER.</p>
                             </div>
                         </div>
@@ -2639,9 +2646,13 @@ window.addEventListener('DOMContentLoaded', () => {
           }).catch(err => console.error('World map error:', err));
           });
 
-        // Flip card functionality
+        // Flip cards: mobile = expand details; desktop = 3D flip
         function flipCard(card) {
-            card.classList.toggle('flipped');
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            card.classList.toggle('show-details');
+            return;
+        }
+        card.classList.toggle('flipped');
         }
 
     </script>
