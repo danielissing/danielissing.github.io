@@ -902,7 +902,8 @@
             border-radius: 15px;
             margin-top: 3rem;
             box-shadow: var(--shadow);
-            max-width: 980px; 
+            max-width: 1200px;
+            width: 100%; 
             margin: 0 auto; 
         }
 
@@ -914,6 +915,7 @@
 
         #world-map {
             margin: 2rem 0;
+            height: clamp(360px, 38vh, 520px);
         }
 
         .travel-stats {
@@ -1197,14 +1199,33 @@
   .flip-card.show-details .flip-card-back { display: block; margin-top: .75rem; }
 }
 
-/* Books: disable 3D flip on phones; use tap-to-reveal text below cover */
+/* Books: mobile = replace cover with text (no 3D, no mirroring) */
 @media (max-width: 768px) {
   .books-grid { grid-template-columns: 1fr !important; }
   .book-card { height: auto; }
-  .book-inner { transform: none !important; }
-  .book-front, .book-back { position: relative; height: auto; backface-visibility: visible; }
-  .book-back { transform: none !important; } /* un-mirror the text */
-  .book-card.show-details .book-back { display: block; margin-top: .75rem; }
+
+  /* kill 3D + center alignment on mobile */
+  .book-inner { transform: none !important; text-align: left; }
+
+  .book-front, .book-back {
+    position: relative;
+    height: auto;
+    backface-visibility: visible;
+  }
+
+  /* default state: show front, hide back */
+  .book-front { display: block; }
+  .book-back  {
+    display: none;
+    transform: none !important;            /* un-mirror text */
+    text-align: left;                       /* no centered text */
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  /* opened state: show back only */
+  .book-card.show-details .book-front { display: none; }
+  .book-card.show-details .book-back  { display: block; margin-top: 0; }
 }
 
 
@@ -1218,6 +1239,14 @@
   .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
   nav ul { display: none; }
   nav ul.is-open { display: flex; flex-wrap: wrap; gap: .5rem 1rem; padding: 4rem 1rem 1rem; }
+}
+
+
+/* Tighter travel stats (affects desktop; adjust/remove the media query if you want it global) */
+@media (min-width: 769px) {
+  .world-travel .travel-stats { font-size: 1.05rem; padding: .75rem 1rem; }
+  .world-travel .country-count,
+  .world-travel .world-percentage { font-size: 1.5rem; }
 }
 
 </style>
@@ -1975,7 +2004,10 @@
                             <div class="book-back">
                                 <h4>The Righteous Mind</h4>
                                 <p class="book-author">Jonathan Haidt</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <p class="book-review">Politics and religion are the two topics not to be discussed in polite society.
+                                    What this advice is based on and how we might be able to do better in an increasingly polarized socierty is the topic of Haidt's classic book.
+                                    Not everything in it has stood the test of time (e.g. the Moral Foundations theory seems to have replciation issues), but it remains a standout
+                                    work to help us appreciate our own blind spots a little more.</p>
                             </div>
                         </div>
                     </div>
@@ -1987,7 +2019,9 @@
                             <div class="book-back">
                                 <h4>Gödel, Escher, Bach</h4>
                                 <p class="book-author">Douglas Hofstadter</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <p class="book-review">Take it from Martin Gardner: "Every few decades, an unknown author brings out a book of such depth, clarity, range, wit, beauty and originality that it is recognized at once as a major literary event."
+                                    The field of AI has changed tremendously since GEB was first published, but the book has aged surprisingly well. A must-read for anyone who is fascinating by how mind emerged from matter.
+                                </p>
                             </div>
                         </div>
                     </div>
