@@ -1051,6 +1051,22 @@
             background: none;
         }
 
+        /* Desktop: let long reviews scroll inside the back panel */
+        @media (min-width: 769px) {
+        .book-card { overflow: hidden; }                 /* contain the panel */
+        .book-front, .book-back { inset: 0; }            /* ensure they fill the card if absolutely positioned */
+        .book-back {
+            overflow: auto;                                 /* enable scrolling */
+            max-height: 100%;                               /* stay within card height */
+            -webkit-overflow-scrolling: touch;
+            padding-right: .5rem;                           /* space for scrollbar, optional */
+        }
+
+        .book-back::-webkit-scrollbar { width: 8px; }
+        .book-back::-webkit-scrollbar-thumb { border-radius: 8px; }
+        }
+
+
         /* Contact Section */
         #contact {
             text-align: center;
@@ -2293,15 +2309,15 @@ window.addEventListener('DOMContentLoaded', () => {
         // Photo descriptions array (same order as photos in gallery)
         const photoDescriptions = [
             'Near Old Fort Point in Jasper, Canada',
-            'View of Granada and the Sierra Nevada from the Alhambra, Spain', 
-            'View of Koenigssee from Achenkanzel, Germany',
+            'View of the Sierra Nevada from the Alhambra, Spain', 
+            'Königssee seen from Achenkanzel, Germany',
             'Quilotoa Crater Lake, Ecuador',
             'Fiescherhorn seen from Grindelwald, Switzerland',
             'Refuge du Toubkal, Morocco',
             'Sulphur Mountain in Banff, Canada',
             'Canyon in Zion National Park, United States',
             'San Carlos de Bariloche, Argentina',
-            'Kirstenbosch Botanical Garden near Cape Town, South Africa',
+            'Kirstenbosch Botanical Garden, South Africa',
             'Below Lac Blanc, Chamonix, France',
             'Volcano sunrise in Putre, Chile',
             'View from Mont Buet over the Barrage d\'Emosson, Switzerland',
