@@ -11,7 +11,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
     <!-- MathJax  -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         * {
@@ -1142,71 +1141,70 @@
                 right: 1rem;
             }
         }
+    
+/* === Mobile & layout settings === */
 
-        /* ===== Mobile UX polish ===== */
+/* Make "About Me" two-column layout stack on phones and widen text */
+@media (max-width: 768px) {
+  .about-container { grid-template-columns: 1fr; padding: 1.5rem; gap: 1.25rem; }
+  .about-content, .about-content p { max-width: none; }
+}
 
-        /* readable line length on larger screens, centered */
-        :root { --readable: 70ch; }
-        .about-content p,
-        .project-content p,
-        .blog-excerpt,
-        .contact-form { max-width: var(--readable); margin-inline: auto; }
+/* CV: stack logo above title on phones; let content use full width */
+@media (max-width: 768px) {
+  .cv-item { flex-direction: column; align-items: flex-start; gap: .75rem; }
+  .cv-icon { width: 64px; height: 64px; margin: 0 0 .25rem 0; }
+}
 
-        /* Clamp world map height and reduce section padding on phones */
-        #world-map { height: clamp(220px, 45vh, 460px); }
+/* World map: remove extra vertical space by matching 2:1 aspect; let svg fill */
+#world-map { height: auto !important; aspect-ratio: 2 / 1; }
+#world-map svg { width: 100% !important; height: 100% !important; display: block; }
 
-        /* Make the top nav behave on phones */
-        .menu-toggle {
-        position: fixed;
-        top: 1rem;
-        left: 1rem;
-        z-index: 1002;
-        display: none;
-        background: var(--white);
-        border: 0;
-        width: 45px; height: 45px;
-        border-radius: 50%;
-        box-shadow: var(--shadow);
-        font-size: 1.25rem;
-        cursor: pointer;
-        }
-        [data-theme="dark"] .menu-toggle { background: var(--white); }
+/* Lightbox caption: move to bottom and shrink on mobile */
+@media (max-width: 768px) {
+  .lightbox-description {
+    bottom: 8px; left: 0; transform: none;
+    width: 100%; max-width: none;
+    text-align: left;
+    font-size: .9rem; padding: .5rem .75rem; border-radius: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.7), rgba(0,0,0,0));
+  }
+}
 
-        @media (max-width: 768px) {
-        /* Stop forcing full-screen sections on phones */
-        section { min-height: auto; padding: 3.5rem 1rem; }
+/* Adventure (running & cycling) cards: make back content readable */
+@media (max-width: 768px) {
+  .adventure-grid { grid-template-columns: 1fr; }
+  .flip-card { height: auto; }
+  .flip-card-inner { min-height: 260px; }
+  .flip-card-front, .flip-card-back { position: relative; height: auto; }
+  .flip-card-back { align-items: flex-start; }
+  .flip-card-back p { font-size: .95rem; }
+}
 
-        /* Option A: horizontal scroll "pills" */
-        /* nav ul { overflow-x: auto; white-space: nowrap; gap: .75rem; padding: .75rem 1rem; justify-content: flex-start; }
-        nav li { margin: 0; flex: 0 0 auto; } */
-
-        /* Option B (default here): real hamburger */
-        .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
-        nav ul { display: none; }
-        nav ul.is-open { display: flex; flex-wrap: wrap; gap: .5rem 1rem; padding: 4rem 1rem 1rem; } /* room for fixed buttons */
-        nav li { margin: 0; }
-
-        /* Keep the theme toggle visible with the hamburger */
-        .theme-toggle { top: 1rem; right: 1rem; }
-
-        /* Books: make it one column and remove 3D flip on phones */
-        .books-grid { grid-template-columns: 1fr; }
-        .book-card { height: auto; }
-        .book-inner { transform: none !important; }
-        .book-front, .book-back {
-            position: relative; height: auto; box-shadow: none;
-        }
-        .book-back { display: none; }
-        .book-card.show-details .book-back { display: block; margin-top: .75rem; }
-        }
-
-        /* Slightly smaller nav text on compact screens so it doesn’t feel crammed */
-        @media (max-width: 420px) {
-        nav a { font-size: .95rem; }
-        }
+/* Books: disable 3D flip on phones; use tap-to-reveal text below cover */
+@media (max-width: 768px) {
+  .books-grid { grid-template-columns: 1fr !important; }
+  .book-card { height: auto; }
+  .book-inner { transform: none !important; }
+  .book-front, .book-back { position: relative; height: auto; backface-visibility: visible; }
+  .book-back { display: none; }
+  .book-card.show-details .book-back { display: block; margin-top: .75rem; }
+}
 
 
-    </style>
+/* Hamburger visibility & nav behavior */
+.menu-toggle {
+  position: fixed; top: 1rem; left: 1rem; z-index: 1002; display: none;
+  background: var(--white); border: 0; width: 44px; height: 44px; border-radius: 999px;
+  box-shadow: var(--shadow); font-size: 1.25rem; cursor: pointer;
+}
+@media (max-width: 768px) {
+  .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  nav ul { display: none; }
+  nav ul.is-open { display: flex; flex-wrap: wrap; gap: .5rem 1rem; padding: 4rem 1rem 1rem; }
+}
+
+</style>
 </head>
 <body>
     <!-- Dark Mode Toggle -->
@@ -1218,10 +1216,7 @@
             <path d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z"/>
         </svg>
     </button>
-
-    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
-    ☰
-    </button>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">☰</button>
     <!-- Navigation -->
     <nav>
         <ul id="site-nav">
@@ -1270,7 +1265,7 @@
         <h2>About Me</h2>
         <div class="about-container">
             <div class="about-image">
-                <img src="images/daniel.png" alt="Daniel Issing">
+                <img loading="lazy" src="images/daniel.png" alt="Daniel Issing">
             </div>
             <div class="about-content">
                 <p>
@@ -1300,7 +1295,7 @@
         <h2>Experience & Education</h2>
         
         <div class="cv-item">
-            <img src="icons/givewell.png" alt="GiveWell" class="cv-icon">
+            <img loading="lazy" src="icons/givewell.png" alt="GiveWell" class="cv-icon">
             <div class="cv-content">
                 <h3>Senior Research Associate</h3>
                 <p><strong><a href = "https://www.givewell.org/" target="_blank">GiveWell</a></strong></p>
@@ -1313,7 +1308,7 @@
         </div>
 
         <div class="cv-item">
-            <img src="icons/shift.png" alt="Shift Technology" class="cv-icon">
+            <img loading="lazy" src="icons/shift.png" alt="Shift Technology" class="cv-icon">
             <div class="cv-content">
                 <h3>Data Science Team Lead</h3>
                 <p><strong><a href = "https://www.shift-technology.com/" target="_blank">Shift Technology</a> </strong></p>
@@ -1326,7 +1321,7 @@
         </div>
 
         <div class="cv-item">
-            <img src="icons/sfl.png" alt="Students For Liberty" class="cv-icon">
+            <img loading="lazy" src="icons/sfl.png" alt="Students For Liberty" class="cv-icon">
             <div class="cv-content">
                 <h3>Asia Program Manager</h3>
                 <p><strong><a href = "https://studentsforliberty.org/" target="_blank">Students For Liberty</a></strong></p>
@@ -1339,7 +1334,7 @@
         </div>
 
         <div class="cv-item">
-            <img src="icons/lmu.png" alt="LMU Munich" class="cv-icon">
+            <img loading="lazy" src="icons/lmu.png" alt="LMU Munich" class="cv-icon">
             <div class="cv-content">
                 <h3>MSc in Theoretical and Mathematical Physics</h3>
                 <p><strong><a href = "https://www.lmu.de/en/" target="_blank">Ludwig Maximilian University Munich</a> &
@@ -1353,7 +1348,7 @@
         </div>
 
         <div class="cv-item">
-            <img src="icons/heidelberg.png" alt="Heidelberg University" class="cv-icon">
+            <img loading="lazy" src="icons/heidelberg.png" alt="Heidelberg University" class="cv-icon">
             <div class="cv-content">
                 <h3>BSc in Physics</h3>
                 <p><strong><a href = "https://www.uni-heidelberg.de/en" target="_blank">Ruprecht Karls University Heidelberg</a> &
@@ -1380,7 +1375,7 @@
                     <h3>LLM Mathematical Reasoning Benchmark</h3>
                 </div>
                 <div class="project-media">
-                    <img src="images/euler.png" alt="Euler Project">
+                    <img loading="lazy" src="images/euler.png" alt="Euler Project">
                 </div>
                 <div class="project-content" style="padding-top: 1rem;">
                     <p>A benchmark suite for evaluating AI models on mathematical problem-solving tasks.</p>
@@ -1396,7 +1391,7 @@
                     <h3>Personal Race Time Predictor</h3>
                 </div>
                 <div class="project-media">
-                    <video controls src="videos/app_demo.mp4" style="width:100%; height:100%; object-fit:cover;"></video>
+                    <video preload="metadata" controls src="videos/app_demo.mp4" style="width:100%; height:100%; object-fit:cover;"></video>
                 </div>
                 <div class="project-content" style="padding-top: 1rem;">
                     <p>A Monte Carlo model that predicts race times based on training data, weather conditions, and course elevation profiles.</p>
@@ -1421,7 +1416,7 @@
                 Scroll down for some highlights from places I did get a chance to visit!
             
             </p>
-            <div id="world-map" style="width: 100%; height: 420px;">
+            <div id="world-map">
                 <svg viewBox="0 0 1000 500" style="width: 100%; height: 100%;"></svg>
             </div>
             <div class="travel-stats">
@@ -1432,112 +1427,112 @@
         
         <div class="photo-gallery collapsed" id="photo-gallery">
             <div class="photo-item" onclick="openLightbox(0)">
-                <img src="images/jasper.jpg" alt="Jasper, Canada">
+                <img loading="lazy" src="images/jasper.jpg" alt="Jasper, Canada">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(1)">
-                <img src="images/granada.png" alt="Granada, Spain">
+                <img loading="lazy" src="images/granada.png" alt="Granada, Spain">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(2)">
-                <img src="images/achenkanzel.png" alt="Koenigssee, Germany">
+                <img loading="lazy" src="images/achenkanzel.png" alt="Koenigssee, Germany">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(3)">
-                <img src="images/quilotoa.png" alt="Quilotoa Crater Lake, Ecuador">
+                <img loading="lazy" src="images/quilotoa.png" alt="Quilotoa Crater Lake, Ecuador">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(4)">
-                <img src="images/grindelwald.png" alt="Grindelwald, Switzerland">
+                <img loading="lazy" src="images/grindelwald.png" alt="Grindelwald, Switzerland">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(5)">
-                <img src="images/toubkal.png" alt="Mount Toubkal, Morocco">
+                <img loading="lazy" src="images/toubkal.png" alt="Mount Toubkal, Morocco">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(6)">
-                <img src="images/banff.png" alt="Banff, Canada">
+                <img loading="lazy" src="images/banff.png" alt="Banff, Canada">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(7)">
-                <img src="images/zion.png" alt="Zion National Park, United States">
+                <img loading="lazy" src="images/zion.png" alt="Zion National Park, United States">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(8)">
-                <img src="images/bariloche.png" alt="San Carlos de Bariloche, Argentina">
+                <img loading="lazy" src="images/bariloche.png" alt="San Carlos de Bariloche, Argentina">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(9)">
-                <img src="images/cape_town.png" alt="Cape Town, South Africa">
+                <img loading="lazy" src="images/cape_town.png" alt="Cape Town, South Africa">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(10)">
-                <img src="images/chamonix.png" alt="Chamonix, France">
+                <img loading="lazy" src="images/chamonix.png" alt="Chamonix, France">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(11)">
-                <img src="images/chile.png" alt="Putre, Chile">
+                <img loading="lazy" src="images/chile.png" alt="Putre, Chile">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(12)">
-                <img src="images/emosson.png" alt="Emosson Dam, Switzerland">
+                <img loading="lazy" src="images/emosson.png" alt="Emosson Dam, Switzerland">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(13)">
-                <img src="images/kauai.png" alt="Kauai, United States">
+                <img loading="lazy" src="images/kauai.png" alt="Kauai, United States">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(14)">
-                <img src="images/lugano.png" alt="Lake Lugano, Switzerland">
+                <img loading="lazy" src="images/lugano.png" alt="Lake Lugano, Switzerland">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(15)">
-                <img src="images/mammoth.png" alt="Mammoth Lakes, United States">
+                <img loading="lazy" src="images/mammoth.png" alt="Mammoth Lakes, United States">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(16)">
-                <img src="images/paxos.png" alt="Paxos, Greece">
+                <img loading="lazy" src="images/paxos.png" alt="Paxos, Greece">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(17)">
-                <img src="images/pyrenees.png" alt="Lac de Gaube, France">
+                <img loading="lazy" src="images/pyrenees.png" alt="Lac de Gaube, France">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(18)">
-                <img src="images/squamish.png" alt="Squamish, Canada">
+                <img loading="lazy" src="images/squamish.png" alt="Squamish, Canada">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(19)">
-                <img src="images/st_bernard.png" alt="Near the Col du Petit St. Bernard, France">
+                <img loading="lazy" src="images/st_bernard.png" alt="Near the Col du Petit St. Bernard, France">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(20)">
-                <img src="images/redwoods.png" alt="Coastal Redwoods near Santa Cruz, United States">
+                <img loading="lazy" src="images/redwoods.png" alt="Coastal Redwoods near Santa Cruz, United States">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
             <div class="photo-item" onclick="openLightbox(21)">
-                <img src="images/uyuni.png" alt="Salar de Uyuni, Bolivia">
+                <img loading="lazy" src="images/uyuni.png" alt="Salar de Uyuni, Bolivia">
                 <div style="padding: 2rem; color: white; text-align: center;">
                 </div>
             </div>
@@ -1565,7 +1560,7 @@
             <div class="lightbox-content">
                 <div class="lightbox-image-container">
                     <span class="lightbox-nav lightbox-prev" onclick="changePhoto(-1)">‹</span>
-                    <img id="lightbox-img" src="" alt="Travel photo">
+                    <img loading="lazy" id="lightbox-img" src="" alt="Travel photo">
                     <span class="lightbox-nav lightbox-next" onclick="changePhoto(1)">›</span>
                     <div id="lightbox-description" class="lightbox-description">Photo description will appear here</div>
                 </div>
@@ -1579,11 +1574,11 @@
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="flip-card-image">
-                                <img src = "images/gr20a.jpg">
+                                <img loading="lazy" src = "images/gr20a.jpg">
                                 <div class="flip-indicator">Click to read more</div>
                             </div>
                             <div class="flip-card-title">
-                                <h4>GR 20</h4>
+                                <h4>GR 20 </h4>
                             </div>
                         </div>
                         <div class="flip-card-back">
@@ -1600,19 +1595,19 @@
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="flip-card-image">
-                                <img src = "images/utmb.jpg">
+                                <img loading="lazy" src = "images/utmb.jpg">
                                 <div class="flip-indicator">Click to read more</div>
                             </div>
                             <div class="flip-card-title">
-                                <h4>Ultra Trail du Mont Blanc</h4>
+                                <h4>Ultra Trail du Mont Blanc </h4>
                             </div>
                         </div>
                         <div class="flip-card-back">
                             <h4>Ultra Trail du Mont Blanc </h4>
-                            <p>The atmosphere during the first 40k is absolutely bonkers, and the arrival after 170km is pure goosebumps. 
-                                There's a lot of justified criticism of the UTMB group, but end of the day they're putting on an amazing race and there's a reason why everyone wants to run it.
-                                Unfortunately, it takes a lot of time, money and luck to get into, so I doubt I'll be able to come back for a second lap. 
-                                <a href = "https://www.strava.com/activities/5869168768">Strava link</a>.</p>
+                                <p>The atmosphere during the first 40k is absolutely bonkers, and the arrival after 170km is pure goosebumps. 
+                                    There's a lot of justified criticism of the UTMB group, but end of the day they're putting on an amazing race and there's a reason why everyone wants to run it.
+                                    Unfortunately, it takes a lot of time, money and luck to get into, so I doubt I'll be able to come back for a second lap. 
+                                    <a href = "https://www.strava.com/activities/5869168768">Strava link</a>.</p>
                         </div>
                     </div>
                 </div>
@@ -1621,15 +1616,15 @@
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="flip-card-image">
-                                <img src = "images/eiger2.jpg">
+                                <img loading="lazy" src = "images/eiger2.jpg">
                                 <div class="flip-indicator">Click to read more</div>
                             </div>
                             <div class="flip-card-title">
-                                <h4>Eiger Ultra Trail</h4>
+                                <h4>Eiger Ultra Trail </h4>
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h4>Eiger Ultra Trail</h4>
+                            <h4>Eiger Ultra Trail </h4>
                             <p>ThIis remains my longest race to date. The route wraps around the Eiger massive and includes lots of glaciers. 
                                 With 260km and around 18,000m of vertical gain, this one is no joke, and we slept very little during those three days and two nights we were out on the trails.
                                 <a href="https://daniel-issing.medium.com/tender-is-the-night-90e881be6e16">Race report.</a></p>
@@ -1641,17 +1636,18 @@
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="flip-card-image">
-                                <img src = "images/via_alpina.jpg">
+                                <img loading="lazy" src = "images/via_alpina.jpg">
                                 <div class="flip-indicator">Click to read more</div>
                             </div>
                             <div class="flip-card-title">
-                                <h4>Via Alpina (2023)</h4>
+                                <h4>Via Alpina by bike</h4>
                             </div>
                         </div>
                         <div class="flip-card-back">
                             <h4>Via Alpina by bike</h4>
-                            <p>The <a href = "https://www.via-alpina.org/" >Via Alpina</a> is a long-distance trek follows the Alps from Monaco to Muggia near Trieste, traversing 8 different countries. For our honeymoon, my wife and I created a bike-friendly version of this trip and spent a month climbing pass after pass. 
-                                <a href = "https://daniel-issing.medium.com/via-alpina-vehentem-c6c884e2c32e">Travel log</a>.</p>
+                            <p>The <a href = "https://www.via-alpina.org/" >Via Alpina</a> is a long-distance trek follows the Alps from Monaco to Muggia near Trieste,
+                                 traversing 8 different countries. For our honeymoon, my wife and I created a bike-friendly version of this trip and spent a month climbing pass after pass. 
+                                <a href = "https://daniel-issing.medium.com/via-alpina-vehentem-c6c884e2c32e">Travel log</a>.</p>        
                         </div>
                     </div>
                 </div>
@@ -1692,7 +1688,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780312420277-M.jpg" alt="The Feast of the Goat">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780312420277-M.jpg" alt="The Feast of the Goat">
                             </div>
                             <div class="book-back">
                                 <h3>The Feast of the Goat</h3>
@@ -1704,7 +1700,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780593087480-M.jpg" alt="The Books of Jacob">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780593087480-M.jpg" alt="The Books of Jacob">
                             </div>
                             <div class="book-back">
                                 <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
@@ -1714,7 +1710,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9782070780976-M.jpg" alt="The Kindly Ones">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9782070780976-M.jpg" alt="The Kindly Ones">
                             </div>
                             <div class="book-back">
                                 <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
@@ -1724,7 +1720,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9783596294336-M.jpg" alt="The Magic Mountain">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9783596294336-M.jpg" alt="The Magic Mountain">
                             </div>
                             <div class="book-back">
                                 <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
@@ -1734,7 +1730,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780312421274-M.jpg" alt="The Corrections">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780312421274-M.jpg" alt="The Corrections">
                             </div>
                             <div class="book-back">
                                 <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
@@ -1744,7 +1740,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780156004800-M.jpg" alt="All the King's Men">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780156004800-M.jpg" alt="All the King's Men">
                             </div>
                             <div class="book-back">
                                 <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
@@ -1754,18 +1750,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780345417947-M.jpg" alt="The Cider House Rules">
-                            </div>
-                            <div class="book-back">
-                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="book-card" onclick="flipBook(this)">
-                        <div class="book-inner">
-                            <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780142000656-M.jpg" alt="East of Eden">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780345417947-M.jpg" alt="The Cider House Rules">
                             </div>
                             <div class="book-back">
                                 <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
@@ -1776,7 +1761,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780140449013-M.jpg" alt="Faust">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780142000656-M.jpg" alt="East of Eden">
                             </div>
                             <div class="book-back">
                                 <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
@@ -1787,7 +1772,18 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780316066525-M.jpg" alt="Infinite Jest">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780140449013-M.jpg" alt="Faust">
+                            </div>
+                            <div class="book-back">
+                                <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="book-card" onclick="flipBook(this)">
+                        <div class="book-inner">
+                            <div class="book-front">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780316066525-M.jpg" alt="Infinite Jest">
                             </div>
                             <div class="book-back">
                                 <p class="book-review">A towering achievement in contemporary literature. Wallace's exploration of addiction, entertainment, and the human condition is both challenging and deeply rewarding. Essential reading.</p>
@@ -1797,7 +1793,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9782070212033-M.jpg" alt="The Plague">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9782070212033-M.jpg" alt="The Plague">
                             </div>
                             <div class="book-back">
                                 <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
@@ -1808,7 +1804,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9782081246331-M.jpg" alt="The Map and the Territory">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9782081246331-M.jpg" alt="The Map and the Territory">
                             </div>
                             <div class="book-back">
                                 <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
@@ -1819,7 +1815,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780547577531-M.jpg" alt="The Prague Cemetery">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780547577531-M.jpg" alt="The Prague Cemetery">
                             </div>
                             <div class="book-back">
                                 <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
@@ -1830,7 +1826,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780061148521-M.jpg" alt="The Unbearable Lightness of Being">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780061148521-M.jpg" alt="The Unbearable Lightness of Being">
                             </div>
                             <div class="book-back">
                                 <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
@@ -1841,7 +1837,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780156032520-M.jpg" alt="A Tale of Love and Darkness">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780156032520-M.jpg" alt="A Tale of Love and Darkness">
                             </div>
                             <div class="book-back">
                                 <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
@@ -1853,7 +1849,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9781681375663-M.jpg" alt="When We Cease to Understand the World">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9781681375663-M.jpg" alt="When We Cease to Understand the World">
                             </div>
                             <div class="book-back">
                                 <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
@@ -1864,7 +1860,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780307387899-M.jpg" alt="The Road">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780307387899-M.jpg" alt="The Road">
                             </div>
                             <div class="book-back">
                                 <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
@@ -1875,7 +1871,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780375701429-M.jpg" alt="American Pastoral">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780375701429-M.jpg" alt="American Pastoral">
                             </div>
                             <div class="book-back">
                                 <p class="book-review">An epic, sprawling novel that follows the 18th-century Jewish mystic Jacob Frank. Tokarczuk's intricate storytelling creates a rich tapestry of Eastern European history and religious transformation.</p>
@@ -1897,7 +1893,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9781846141812-M.jpg" alt="The Righteous Mind">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9781846141812-M.jpg" alt="The Righteous Mind">
                             </div>
                             <div class="book-back">
                                 <p>lorem ipsum.</p>
@@ -1907,7 +1903,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780674368309-M.jpg" alt="The Enigma of Reason">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780674368309-M.jpg" alt="The Enigma of Reason">
                             </div>
                             <div class="book-back">
                                 <h3>The Enigma of Reason</h3>
@@ -1919,7 +1915,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780465026562-M.jpg" alt="Gödel, Escher, Bach">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780465026562-M.jpg" alt="Gödel, Escher, Bach">
                             </div>
                             <div class="book-back">
                                 <h3>Gödel, Escher, Bach</h3>
@@ -1931,7 +1927,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780679746744-M.jpg" alt="Why We Get Sick">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780679746744-M.jpg" alt="Why We Get Sick">
                             </div>
                             <div class="book-back">
                                 <h3>Why We Get Sick</h3>
@@ -1942,7 +1938,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780691166858-M.jpg" alt="The Secret of Our Success">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780691166858-M.jpg" alt="The Secret of Our Success">
                             </div>
                             <div class="book-back">
                                 <h3>The Secret of Our Success</h3>
@@ -1953,7 +1949,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780300078152-M.jpg" alt="Seeing Like a State">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780300078152-M.jpg" alt="Seeing Like a State">
                             </div>
                             <div class="book-back">
                                 <h3>Seeing Like a State</h3>
@@ -1965,7 +1961,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9781476733500-M.jpg" alt="The Gene">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9781476733500-M.jpg" alt="The Gene">
                             </div>
                             <div class="book-back">
                                 <h3>The Gene</h3>
@@ -1976,7 +1972,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780061452062-M.jpg" alt="The Rational Optimist">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780061452062-M.jpg" alt="The Rational Optimist">
                             </div>
                             <div class="book-back">
                                 <h3>The Rational Optimist</h3>
@@ -1987,7 +1983,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780465007844-M.jpg" alt="Bureaucracy">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780465007844-M.jpg" alt="Bureaucracy">
                             </div>
                             <div class="book-back">
                                 <h3>Bureaucracy</h3>
@@ -1998,7 +1994,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780691147215-M.jpg" alt="Honeybee Democracy">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780691147215-M.jpg" alt="Honeybee Democracy">
                             </div>
                             <div class="book-back">
                                 <h3>Honeybee Democracy</h3>
@@ -2009,7 +2005,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780812690682-M.jpg" alt="The Machinery of Freedom">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780812690682-M.jpg" alt="The Machinery of Freedom">
                             </div>
                             <div class="book-back">
                                 <h3>The Machinery Of Freedom</h3>
@@ -2020,7 +2016,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780195037944-M.jpg" alt="Albion's Seed">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780195037944-M.jpg" alt="Albion's Seed">
                             </div>
                             <div class="book-back">
                                 <h3>Albion's Seed</h3>
@@ -2031,7 +2027,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780061146657-M.jpg" alt="The Sleepwalkers">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780061146657-M.jpg" alt="The Sleepwalkers">
                             </div>
                             <div class="book-back">
                                 <h3>The Sleepwalkers</h3>
@@ -2042,7 +2038,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780465094257-M.jpg" alt="Lost in Math">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780465094257-M.jpg" alt="Lost in Math">
                             </div>
                             <div class="book-back">
                                 <h3>Lost in Math</h3>
@@ -2053,7 +2049,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780190495992-M.jpg" alt="The Elephant in the Brain">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780190495992-M.jpg" alt="The Elephant in the Brain">
                             </div>
                             <div class="book-back">
                                 <h3>The Elephant in the Brain</h3>
@@ -2064,7 +2060,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780316067447-M.jpg" alt="The Evolution of God">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780316067447-M.jpg" alt="The Evolution of God">
                             </div>
                             <div class="book-back">
                                 <h3>The Evolution of God</h3>
@@ -2075,7 +2071,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9781610390934-M.jpg" alt="Poor Economics">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9781610390934-M.jpg" alt="Poor Economics">
                             </div>
                             <div class="book-back">
                                 <h3>Poor Economics</h3>
@@ -2086,7 +2082,7 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img src="https://covers.openlibrary.org/b/isbn/9780805080124-M.jpg" alt="The Unfolding of Language">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780805080124-M.jpg" alt="The Unfolding of Language">
                             </div>
                             <div class="book-back">
                                 <h3>The Unfolding of Language</h3>
@@ -2196,9 +2192,35 @@
         });
 
         // Book flipping
-        function flipBook(card) {
-            card.classList.toggle('flipped');
-        }
+        
+// === Mobile hamburger ===
+(function() {
+  const menuBtn = document.querySelector('.menu-toggle');
+  const navList = document.getElementById('site-nav');
+  if (menuBtn && navList) {
+    menuBtn.addEventListener('click', () => {
+      const open = navList.classList.toggle('is-open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+})();
+
+// === Books: on phones, use tap-to-reveal instead of 3D flip ===
+function flipBook(card) {
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    card.classList.toggle('show-details');
+    return;
+  }
+  card.classList.toggle('flipped');
+}
+
+// === Lazy-load images, lighten videos ===
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('img:not([loading])').forEach(img => img.setAttribute('loading', 'lazy'));
+  document.querySelectorAll('video').forEach(v => v.setAttribute('preload', 'metadata'));
+});
+
+/* previous flipBook replaced above */
 
         // Lightbox functionality
         let currentPhotoIndex = 0;
@@ -2563,32 +2585,6 @@
         function flipCard(card) {
             card.classList.toggle('flipped');
         }
-
-        // === Mobile hamburger ===
-        const menuBtn = document.querySelector('.menu-toggle');
-        const navList = document.getElementById('site-nav');
-        if (menuBtn && navList) {
-        menuBtn.addEventListener('click', () => {
-            const open = navList.classList.toggle('is-open');
-            menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        });
-        }
-
-        // === Books: on phones, use tap-to-reveal instead of flip ===
-        function flipBook(card) {
-        if (window.matchMedia('(max-width: 768px)').matches) {
-            card.classList.toggle('show-details');
-            return;
-        }
-        card.classList.toggle('flipped');
-        }
-
-        // === Lazy load images; keep videos light ===
-        window.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('img').forEach(img => img.setAttribute('loading', 'lazy'));
-        document.querySelectorAll('video').forEach(v => v.setAttribute('preload', 'metadata'));
-        });
-
 
     </script>
 </body>
