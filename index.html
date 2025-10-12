@@ -10,6 +10,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet">
+
     <!-- MathJax  -->
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -68,11 +73,14 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--dark-text);
             background: var(--light-bg);
             transition: background 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
         }
     
         #world-map { position: relative; width: 100%; height: 460px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 28px rgba(0,0,0,.08); background: transparent; }
@@ -162,6 +170,9 @@
             text-decoration: none;
             color: var(--dark-text);
             font-weight: 500;
+            font-size: 0.95rem; 
+            letter-spacing: 0.02em; 
+            text-transform: lowercase; 
             transition: var(--transition);
             position: relative;
             padding: 0.5rem 0;
@@ -203,10 +214,12 @@
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
             color: var(--primary-green);
             animation: fadeInUp 0.8s ease;
+            font-weight: 700; 
+            letter-spacing: -0.02em; 
         }
 
         h2 {
@@ -214,12 +227,17 @@
             margin-bottom: 2rem;
             color: var(--primary-green);
             text-align: center;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+
         }
 
         h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--dark-text);
+            font-weight: 500;
+            letter-spacing: -0.005em;
         }
 
         @keyframes fadeInUp {
@@ -242,11 +260,15 @@
             min-height: auto;
         }
 
-        .tagline {
-            font-size: 1.5rem;
+        .tagline, .hero-tag {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.6rem; /* Slightly larger */
             color: var(--light-green);
             margin-bottom: 2rem;
             animation: fadeInUp 0.8s ease 0.2s both;
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: 0.01em;
         }
 
         .social-links {
@@ -331,9 +353,9 @@
         }
 
         .about-content p {
-            margin-bottom: 1.5rem;
-            color: var(--light-text);
-            line-height: 1.8;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            letter-spacing: 0.01em;
         }
 
         /* CV Section */
@@ -368,7 +390,9 @@
         }
         
         .cv-content p {
-            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: var(--light-text);
         }
         
         .cv-content p:last-child {
@@ -441,6 +465,7 @@
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.875rem;
+            letter-spacing: 0.03em;
         }
 
         /* Writing Section */
@@ -475,6 +500,7 @@
             color: var(--light-green);
             font-size: 0.875rem;
             margin-bottom: 0.5rem;
+            letter-spacing: 0.03em;
         }
 
         .blog-title {
@@ -482,11 +508,13 @@
             font-size: 1.5rem;
             margin-bottom: 1rem;
             font-weight: 600;
+            letter-spacing: -0.01em;
         }
 
         .blog-excerpt {
-            color: var(--light-text);
-            line-height: 1.6;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            letter-spacing: 0.01em;
         }
 
         .load-more {
@@ -880,8 +908,9 @@
             color: white;
             padding: 0.25rem 0.5rem;
             border-radius: 15px;
-            font-size: 0.75rem;
+            font-size: 0.875rem;
             pointer-events: none;
+            letter-spacing: 0.03em;
         }
 
         @media (max-width: 768px) {
@@ -1026,9 +1055,9 @@
         }
 
         .book-back .book-review {
-            color: var(--dark-text);
-            font-size: 0.85rem;
-            line-height: 1.4;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            letter-spacing: 0.01em;
         }
 
         .book-title {
@@ -1139,8 +1168,19 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.75rem; }
+            h1 { 
+                font-size: 2.5rem; 
+                letter-spacing: -0.01em;
+            }
+            h2 { 
+                font-size: 2rem; 
+            }
+            .tagline, .hero-tag {
+                font-size: 1.3rem;
+            }
+            body {
+                font-size: 1rem;
+            }
             .books-container { grid-template-columns: 1fr; }
             .projects-grid { grid-template-columns: 1fr; }
             nav li { margin: 0 0.75rem; }
@@ -1265,22 +1305,22 @@
     <!-- Navigation -->
     <nav>
         <ul id="site-nav">
-            <li><a href="#home" class="nav-link active">Home</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#cv" class="nav-link">CV</a></li>
-            <li><a href="#coding" class="nav-link">Coding</a></li>
-            <li><a href="#travel" class="nav-link">Travel</a></li>
-            <li><a href="#exploits" class="nav-link">Exploits</a></li>
-            <li><a href="#writing" class="nav-link">Writing</a></li>
-            <li><a href="#books" class="nav-link">Book Recs</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
+            <li><a href="#home" class="nav-link active">home</a></li>
+            <li><a href="#about" class="nav-link">about</a></li>
+            <li><a href="#cv" class="nav-link">cv</a></li>
+            <li><a href="#coding" class="nav-link">coding</a></li>
+            <li><a href="#travel" class="nav-link">travel</a></li>
+            <li><a href="#exploits" class="nav-link">exploits</a></li>
+            <li><a href="#writing" class="nav-link">writing</a></li>
+            <li><a href="#books" class="nav-link">books</a></li>
+            <li><a href="#contact" class="nav-link">contact</a></li>
         </ul>
     </nav>
 
     <!-- Home Section -->
     <section id="home">
-        <h1>Daniel Issing</h1>
-        <i><p class="tagline">Irony is the song of a bird that has come to love its cage.</p></i>
+        <h1>daniel issing</h1>
+        <p class="hero-tag">all models are wrong, but some are fun to play with.</p>
         <div class="social-links">
             <a href="https://linkedin.com/in/daniel-issing" target="_blank" title="LinkedIn">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1307,7 +1347,7 @@
 
     <!-- About Section -->
     <section id="about">
-        <h2>About Me</h2>
+        <h2>about me</h2>
         <div class="about-container">
             <div class="about-image">
                 <img loading="lazy" src="images/daniel.png" alt="Daniel Issing">
@@ -1315,18 +1355,19 @@
             <div class="about-content">
                 <p>
                     Hi there and thanks for dropping by here! I'm Daniel, a researcher in global health and development.
-                    My trajectory has been anything but linear, and over the last decade I have, at various points in time, been working on obscure mathematical objects used to
-                    model quantum systems, running leadership trainings out an old leprosy ward in Nepal, and helped insurers identify and investigate fraudulent claims. 
-                    You can learn more about my path <a href="#cv" class="nav-link">here</a>.<br><br>
+                    My trajectory has been anything but linear, and over the last decade I have been doing research on obscure mathematical objects called quantum algebras, ran a leadership seminar out an old leprosy ward in Nepal, 
+                     and developed machine learning algorithms to catch insurance fraudster. Oh, and I almost ended up doing a PhD in neuroeconomics...
+                    but see <a href="#cv" class="nav-link">below</a>.<br><br>
 
-                    I'm a generalist at heart, a jack of many trades but master of few. I enjoy <a href="#coding" class="nav-link">coding</a>  and wrestling with math problems, 
-                    <a href="#books" class="nav-link">reading</a> about topics from astronomy to zoology, and <a href="#writing" class="nav-link">writing</a> about things big and small that capture my imagination. 
-                    While this likely bars me from becoming a true subject matter expert in any domain, I like to imagine that it lets me spot patterns and connections that others may miss.
+                    I'm a generalist at heart, a jack of many trades but master of few. I enjoy <a href="#coding" class="nav-link">coding</a> and math problems, 
+                    <a href="#books" class="nav-link">reading</a> multiple books at once, and <a href="#writing" class="nav-link">writing</a> about things big and small that capture my imagination. 
+                    Such a temperament reliable gets in the way of becoming a true subject matter expert in any domain, but I like to imagine that it lets me spot patterns and connections that the specialists may miss.
                     If there's a thread connecting all of the above, it's probably just a stubborn commitment to understanding how things actually work, whether that's AI, quantum computing or programs to alleviate global poverty. <br><br>
 
                     And why limit my curiosity to intellectual pursuits? 
-                    I'm an avid trail runner and cyclist, which has opened up new ways to explore my limits, some of which I've highlighted <a href="#exploits" class="nav-link">below</a>.
-                    And I love connecting these exploits with <a href="#travel" class="nav-link">traveling</a> to new places. My aspiration for all of this: Be kind. Stay curious. Do not go gentle.
+                    As an avid trail runner & cyclist, I'm always keen ti find new wats to explore my limits, some of which I've highlighted <a href="#exploits" class="nav-link">below</a>.
+                    And I love connecting these exploits with <a href="#travel" class="nav-link">traveling</a> to new places. 
+                    Scroll on to learn more!
                 
                 </p>
             </div>
@@ -1335,7 +1376,7 @@
 
     <!-- CV Section -->
     <section id="cv">
-        <h2>Experience & Education</h2>
+        <h2>experience & education</h2>
         
         <div class="cv-item">
             <img loading="lazy" src="icons/givewell.png" alt="GiveWell" class="cv-icon">
@@ -1379,7 +1420,7 @@
         <div class="cv-item">
             <img loading="lazy" src="icons/lmu.png" alt="LMU Munich" class="cv-icon">
             <div class="cv-content">
-                <h3>MSc in Theoretical and Mathematical Physics</h3>
+                <h3>MSc, Theoretical & Mathematical Physics</h3>
                 <p><strong><a href = "https://www.lmu.de/en/" target="_blank">Ludwig Maximilian University Munich</a> &
                      <a href = "https://lapth.cnrs.fr/en" target="_blank">LAPTh</a></strong></p>
                 <p>I was accepted into the joint LMU & TUM <a href = "https://www.theorie.physik.uni-muenchen.de/TMP/index.html" target="_blank">elite master course on theoretical and mathematical physics</a> for my graduate studies. 
@@ -1393,7 +1434,7 @@
         <div class="cv-item">
             <img loading="lazy" src="icons/heidelberg.png" alt="Heidelberg University" class="cv-icon">
             <div class="cv-content">
-                <h3>BSc in Physics</h3>
+                <h3>BSc, Physics</h3>
                 <p><strong><a href = "https://www.uni-heidelberg.de/en" target="_blank">Ruprecht Karls University Heidelberg</a> &
                      <a href = "https://carleton.ca/" target="_blank">Carleton University, Ottawa</a></strong></p>
                 <p>I went into physics for its promise to offer a glimpse into the fabric of reality at its most fundamental level. 
@@ -1408,7 +1449,7 @@
 
     <!-- Projects Section -->
     <section id="coding">
-        <h2>Coding</h2>
+        <h2>coding</h2>
             <p style="margin-bottom: 2rem; text-align: center;"> A selection on personal projects I've been working on. 
                 You can find more examples on my <a href="https://github.com/danielissing/" target="_blank" >GitHub page.</a> </p>
         <div class="projects-grid">
@@ -1454,21 +1495,21 @@
 
     <!-- Travel Section -->
     <section id="travel">
-        <h2>Traveling</h2>
+        <h2>traveling</h2>
         
         <div class="world-travel">
-            <p style="text-align: center; color: var(--light-text); font-style: italic; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.7;">
-                The earth is just one small planet in our solar system, which itself makes up but a tiny part of one of trillions of galaxies.
+            <p style="margin-bottom: 2rem; text-align: center;"> 
+                 The earth is just one small planet in our solar system, which itself makes up but a tiny part of one of trillions of galaxies.
                 And yet, I've seen preciously little of it.
                 This map serves as a reminder that there are still many places left to be explored, and many things I don't know. 
-                Scroll down for some highlights from places I did get a chance to visit!
+                Scroll down for some highlights from places I did get a chance to visit!.</a> </p>               
             
             </p>
             <div id="world-map">
                 <svg viewBox="0 0 1000 500" style="width: 100%; height: 100%;"></svg>
             </div>
             <div class="travel-stats">
-                <span class="country-count">0</span> countries · 
+                <span class="country-count">0</span> countries -  
                 <span class="world-percentage">0%</span> of the world
             </div>
         </div>
@@ -1587,7 +1628,7 @@
         </div>
 
         <button class="expand-gallery-btn" id="expand-gallery-btn" onclick="toggleGallery()">
-            <span id="expand-text">Show More Photos</span>
+            <span id="expand-text">show more photos</span>
             <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z"/>
             </svg>
@@ -1596,7 +1637,7 @@
 
     <!-- Sports Section -->
     <section id="exploits">
-        <h2>Running & Cycling</h2>
+        <h2>running & cycling</h2>
             <p style="margin-bottom: 2rem;text-align: center;">There are many ways to test one's limit, but for me, nothing beats endurance sports. 
                 Especially when you can combine it with breathtaking views! Ever since I ran my first half marathon at age 16, I've been hooked, and have participated 
                 in  (and finished) over 35 ultramarathons. Below is a small selection of the most daunting, beautiful and at times soul-crushing exploits I foolishly signed up for.
@@ -1623,14 +1664,14 @@
                         <div class="flip-card-front">
                             <div class="flip-card-image">
                                 <img loading="lazy" src = "images/gr20a.jpg">
-                                <div class="flip-indicator">Click to read more</div>
+                                <div class="flip-indicator">click to read more</div>
                             </div>
                             <div class="flip-card-title">
-                                <h4>GR 20 </h4>
+                                <h4>gr 20 </h4>
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h4>GR 20</h4>
+                            <h4>gr 20</h4>
                             <p>The <a href = "https://www.le-gr20.fr/en">GR20</a> is one of the most famous long-distance hikes in France, traversing Corsica from north to south. It's also famously rocky and technical,
                                 especially the northern section. People usually hike it two weeks, but a friend and I decided we were going to try finish it in four days,
                                 carrying all of our gear with us. It was rough.
@@ -1644,16 +1685,16 @@
                         <div class="flip-card-front">
                             <div class="flip-card-image">
                                 <img loading="lazy" src = "images/utmb.jpg">
-                                <div class="flip-indicator">Click to read more</div>
+                                <div class="flip-indicator">click to read more</div>
                             </div>
                             <div class="flip-card-title">
-                                <h4>Ultra Trail du Mont Blanc </h4>
+                                <h4>ultra trail du mont blanc </h4>
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h4>Ultra Trail du Mont Blanc </h4>
+                            <h4>ultra trail du mont blanc </h4>
                                 <p>The atmosphere during the first 40k is absolutely bonkers, and the arrival after 170km is pure goosebumps. 
-                                    There's a lot of justified criticism of the UTMB group, but end of the day they're putting on an amazing race and there's a reason why everyone wants to run it.
+                                    Say what you will about the UTMB group, but there's a reason why everyone wants to run it.
                                     Unfortunately, it takes a lot of time, money and luck to get into, so I doubt I'll be able to come back for a second lap. 
                                     <a href = "https://www.strava.com/activities/5869168768">Strava link</a>.</p>
                         </div>
@@ -1665,14 +1706,14 @@
                         <div class="flip-card-front">
                             <div class="flip-card-image">
                                 <img loading="lazy" src = "images/eiger2.jpg">
-                                <div class="flip-indicator">Click to read more</div>
+                                <div class="flip-indicator">click to read more</div>
                             </div>
                             <div class="flip-card-title">
-                                <h4>Eiger Ultra Trail </h4>
+                                <h4>eiger ultra trail </h4>
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h4>Eiger Ultra Trail </h4>
+                            <h4>eiger ultra trail </h4>
                             <p>ThIis remains my longest race to date. The route wraps around the Eiger massive and includes lots of glaciers. 
                                 With 260km and around 18,000m of vertical gain, this one is no joke, and we slept very little during those three days and two nights we were out on the trails.
                                 <a href="https://daniel-issing.medium.com/tender-is-the-night-90e881be6e16">Race report.</a></p>
@@ -1685,14 +1726,14 @@
                         <div class="flip-card-front">
                             <div class="flip-card-image">
                                 <img loading="lazy" src = "images/via_alpina.png">
-                                <div class="flip-indicator">Click to read more</div>
+                                <div class="flip-indicator">click to read more</div>
                             </div>
                             <div class="flip-card-title">
-                                <h4>Via Alpina by bike</h4>
+                                <h4>via alpina by bike</h4>
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h4>Via Alpina by bike</h4>
+                            <h4>via alpina by bike</h4>
                             <p>The <a href = "https://www.via-alpina.org/" >Via Alpina</a> is a long-distance trek follows the Alps from Monaco to Muggia near Trieste,
                                  traversing 8 different countries. For our honeymoon, my wife and I created a bike-friendly version of this trip and spent a month climbing pass after pass. 
                                 <a href = "https://daniel-issing.medium.com/via-alpina-vehentem-c6c884e2c32e">Travel log</a>.</p>        
@@ -1705,7 +1746,7 @@
 
     <!-- Writing Section -->
     <section id="writing">
-        <h2>Writing</h2>
+        <h2>writing</h2>
         <div id="blog-posts" class="blog-posts">
             <!-- Blog posts will be loaded here -->
             <div class="blog-post">
@@ -1716,22 +1757,23 @@
         </div>
         <div class="load-more">
             <a href="https://medium.com/@daniel-issing" target="_blank" style="text-decoration: none;">
-                <button>Read all of my writing on Medium</button>
+                <button>read all of my writing on medium</button>
             </a>
         </div>
     </section>
 
     <!-- Books Section -->
     <section id="books">
-        <h2>Book Recommendations</h2>
-            <p style="margin-bottom: 2rem; text-align: center;">A list of favorite books is never static, not only because - hopefully - some of them are yet to be read.
-                Taste changes, once novel insights become self-evident truths, and sometimes I forget whether I actually liked a book or just wanted to. 
+        <h2>book recommendations</h2>
+            <p style="margin-bottom: 2rem; text-align: center;">
+                I love getting book recommendations from other people, so it's only fair I share mine. Of course, such a list is never static, not only because it - hopefully - keeps growing.
+                Tastes change, things that seemed groundbreaking start feeling banal (or wrong), and memory isn't always as reliable as we'd like to think. 
                 All that is to say that the selection below is necessarily a snapshot of a particular moment in time, 
-                but I don't think you'd regret picking up any of these. Click on them for a brief review! </p>
+                but I don't think you'd regret picking up any of these. Click for a brief review! </p>
         
         <div class="books-container">
             <div class="book-category">
-                <h3>Fiction</h3>
+                <h3>fiction</h3>
                 <div class="books-grid collapsed" id="fiction-books">
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
@@ -1785,7 +1827,11 @@
                             <div class="book-back">
                                 <h4>Der Zauberberg</h4>
                                 <p class="book-author">Thomas Mann</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <p class="book-review">I read "The Magic Mountain" way back in high school, and the novel has had a special place in my heart every since.
+                                    It is a nostalgic work, portraying the sanatorium as a microcosm of European culture and thought before the continent descended into the madness of 
+                                    two world wars. And, of course, it's the paradigmatic TB novel, a disease that has faded from collective memory in the West but
+                                    continues to claims the lives of more than a million people each year.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -1797,7 +1843,10 @@
                             <div class="book-back">
                                 <h4>The Corrections</h4>
                                 <p class="book-author">Jonathan Franzen</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <p class="book-review">I like to think of Franzen as the 21st century reincarnation of John Updike, and both have certainly contributed much to the tradition of the suburban novel.
+                                     The conflicts that form the backbone of The Corrections will hit close to home for many readers, and their very futility makes the book so gripping. 
+                                     Read it for glimmers of hope amidst much self-imposed misery, inexplicable behaviors that only gradually begin to make sense, and astute psychological observations of emotional turmoil.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -1808,8 +1857,10 @@
                             </div>
                             <div class="book-back">
                                 <h4>All the King's Men</h4>
-                                <p class="book-author">Robert Warren Penn</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <p class="book-author">Robert Penn Warren</p>
+                                <p class="book-review">To understand what it means to seek power for power's sake, look no further than Warren's fictionalized account of Lousiana's governor Huey Lewis.
+                                    There are things a novel manages to capture that no study of populism, however comprehensive, could convey.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -1821,7 +1872,8 @@
                             <div class="book-back">
                                 <h4>The Cider House Rules</h4>
                                 <p class="book-author">John Irving</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <p class="book-review">Irving is an excellent storyteller - not because he's groundbreaking or innovative (David Copperfield is an obvious influence, as is Goethe's Wilhelm Meisters Lehrjahre),
+                                    but simply because he's perfected the craft of telling a great story. It's probably the best and most nuanced literary treatment of abortion, neither shying away from judgment nor surpressing its complexities.</p>
                             </div>
                         </div>
                     </div>
@@ -1834,7 +1886,8 @@
                             <div class="book-back">
                                 <h4>East of Eden</h4>
                                 <p class="book-author">John Steinbeck</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <p class="book-review">Classics often require time and patience to appreciate...
+                                    anyway.</p>
                             </div>
                         </div>
                     </div>
@@ -1847,7 +1900,9 @@
                             <div class="book-back">
                                 <h4>Faust I</h4>
                                 <p class="book-author">Johann Wolfgang von Goethe</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <p class="book-review">What Hamlet is to England, Don Quixote is to Spain and The Divine Comedy is to Italy, the first Faust is to Germany. Of course you should read
+                                    it in the original, if you can. Unlike some of the other classics, it's fairly short and actually quite accesible.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -1860,7 +1915,7 @@
                             <div class="book-back">
                                 <h4>Infinite Jest</h4>
                                 <p class="book-author">David Foster Wallace</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <p class="book-review">It's everything you'd expect it to be (long, convoluted and hard to digest) and it took me several attempts to finish it, the first dating back to early this year. Even when I finally started liking it (after a few hundred pages), it still took me several weeks more to get through. But even though I really, really hated it at times, it didn't let me go, and I still find myself browsing the book's even more expansive Wiki to see all the things I missed when reading it.</p>
                             </div>
                         </div>
                     </div>
@@ -1964,13 +2019,16 @@
                             <div class="book-back">
                                 <h4>American Pastoral</h4>
                                 <p class="book-author">Philip Roth</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <p class="book-review">A harrowing read. There sure are books that portray greater evil and tragedy than this Newark family drama,
+                                    but for reasons I can't quite articulate, watching the life of a successful businessman and father unravel through no fault of his own (or so it appears).
+                                    Roth's best novel, in my mind (and he wrote many excellent ones).
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <button class="expand-books-btn" id="expand-fiction-btn" onclick="toggleBooks('fiction')">
-                    <span id="expand-fiction-text">Show More Books</span>
+                    <span id="expand-fiction-text">show more books</span>
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z"/>
                     </svg>
@@ -1978,7 +2036,7 @@
             </div>
 
             <div class="book-category">
-                <h3>Non-Fiction</h3>
+                <h3>non-fiction</h3>
                 <div class="books-grid collapsed" id="nonfiction-books">
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
@@ -2003,7 +2061,7 @@
                                 <h4>The Righteous Mind</h4>
                                 <p class="book-author">Jonathan Haidt</p>
                                 <p class="book-review">Politics and religion are the two topics not to be discussed in polite society.
-                                    What this advice is based on and how we might be able to do better in an increasingly polarized socierty is the topic of Haidt's classic book.
+                                    What this piece of advice is based on and how we might be able to do better in an increasingly polarized socierty is the topic of Haidt's classic book.
                                     Not everything in it has stood the test of time (e.g. the Moral Foundations theory seems to have replciation issues), but it remains a standout
                                     work to help us appreciate our own blind spots a little more.</p>
                             </div>
@@ -2031,7 +2089,11 @@
                             <div class="book-back">
                                 <h4>Why We Get Sick</h4>
                                 <p class="book-author">Randolph Nesse & George Williams</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <p class="book-review">Nothing in biology makes sense except in the light of evolution, and illnesses & diseases are no exception to that rule.
+                                    Of course the insight that pathogens, too, struggle mightily to increase their fitness, is not novel, but the question why the human body hasn't found its
+                                    way around non-infectious diseases (especially mental illness) remains a puzzling one. 
+                                    I credit this book with giving me a new and refreshing outlook on medicine. 
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -2067,7 +2129,10 @@
                             <div class="book-back">
                                 <h4>The Gene</h4>
                                 <p class="book-author">Siddharta Mukherjee</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <p class="book-review">This is quite simply the best book for curious laypeople to get a deeper understanding of genetics.
+                                    Mukherjee is one of the most gifted science writers of our age, and here he does a wonderful job of relying complicated concepts
+                                    in an accesible (but not simplistic) way. 
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -2079,7 +2144,10 @@
                             <div class="book-back">
                                 <h4>The Rational Optimist</h4>
                                 <p class="book-author">Matt Ridley</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <p class="book-review">Optimists are often accused of having an irrational, panglossian view way of looking at the world,
+                                    but Ridley makes the case that it's the pessimists who are mistaken and selective in their assessment. There is now a whole community dedicated to the 
+                                    study of progress, but The Rational Optimist still strikes me as the best exposition of this view.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -2103,7 +2171,11 @@
                             <div class="book-back">
                                 <h4>Honeybee Democracy</h4>
                                 <p class="book-author">Thomas D. Seeley</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <p class="book-review">In most everyday sitations, a honeybee is a nuisance, and few people other than professional melittologists
+                                    think there's much to be gained from studying them. Seeley's remarkable accomplishment is that he demonstrates how fascinating things
+                                    get when you look at the decision-making processes of a swarm as a whole, with important implications for neuroscience and 
+                                    collective action theories. If nothing else, knowing how a swarm finds a new home is excellent cocktail party knowledge.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -2115,7 +2187,11 @@
                             <div class="book-back">
                                 <h4>The Machinery Of Freedom</h4>
                                 <p class="book-author">David D. Friedman</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <p class="book-review">David Friedman strikes me as the sharpest thinker among the more radical libertarians. 
+                                    You don't have to buy his arguments in favor of market anarchism to find the book thought-provoking. What I particularly liked about it
+                                    is that, even though his challenges for political philosophers of all stripes are excellent,
+                                    he's very open about the shortcomings of his preferred political system. 
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -2187,7 +2263,11 @@
                             <div class="book-back">
                                 <h4>Poor Economics</h4>
                                 <p class="book-author">Abhijit Banerjee & Esther Duflo</p>
-                                <p class="book-review">PLACEHOLDER.</p>
+                                <p class="book-review">Poor Economics is, at its core, a highly empathic attempt to come to grips with the seemingly paradoxical and self-defeating everyday choices of the world’s poor.
+                                    It’s also a prime example of a work that engages those who disagree with its perspective in good faith.
+                                    Not to mention that it has also been a major driver of the credibility revolution in development economics.
+                                    No small feat for such a relatively slim volume!
+                                </p>
                             </div>
                         </div>
                     </div>   
@@ -2205,7 +2285,7 @@
                     </div>
                 </div>
                 <button class="expand-books-btn" id="expand-nonfiction-btn" onclick="toggleBooks('nonfiction')">
-                    <span id="expand-nonfiction-text">Show More Books</span>
+                    <span id="expand-nonfiction-text">show more books</span>
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z"/>
                     </svg>
@@ -2216,32 +2296,32 @@
 
     <!-- Contact Section -->
     <section id="contact">
-        <h2>Get in Touch</h2>
-        <p style="margin-bottom: 2rem;">Have a question or want to chat? I'd love to hear from you!</p>
+        <h2>get in touch</h2>
+        <p style="margin-bottom: 2rem;">Have a question, got feedback or simply want to get in touch? I'd love to hear from you!</p>
         
         <div class="contact-form">
             <form action="https://formspree.io/f/mdklyqje" method="POST">
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">name</label>
                     <input type="text" id="name" name="name" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">email</label>
                     <input type="email" id="email" name="email" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="subject">Subject</label>
+                    <label for="subject">subject</label>
                     <input type="text" id="subject" name="subject" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="message">Message</label>
+                    <label for="message">message</label>
                     <textarea id="message" name="message" required></textarea>
                 </div>
                 
-                <button type="submit" class="submit-btn">Send Message</button>
+                <button type="submit" class="submit-btn">send message</button>
             </form>
         </div>
     </section>
@@ -2424,7 +2504,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
                 
                 if (data.status === 'ok') {
-                    displayPosts(data.items.slice(0, 3)); // Show first 3 posts
+                    displayPosts(data.items.slice(0, 2)); // Show first 2 posts
                 }
             } catch (error) {
                 console.error('Error loading Medium posts:', error);
@@ -2479,9 +2559,9 @@ window.addEventListener('DOMContentLoaded', () => {
             btn.classList.toggle('expanded');
             
             if (gallery.classList.contains('collapsed')) {
-                text.textContent = 'Show More Photos';
+                text.textContent = 'show more photos';
             } else {
-                text.textContent = 'Show Fewer Photos';
+                text.textContent = 'show fewer photos';
             }
         }
 
@@ -2495,9 +2575,9 @@ window.addEventListener('DOMContentLoaded', () => {
             btn.classList.toggle('expanded');
             
             if (booksGrid.classList.contains('collapsed')) {
-                text.textContent = 'Show More Books';
+                text.textContent = 'show more books';
             } else {
-                text.textContent = 'Show Fewer Books';
+                text.textContent = 'show fewer books';
             }
         }
 
