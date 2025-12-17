@@ -1041,6 +1041,7 @@
             justify-content: flex-start;
             text-align: left;
             line-height: 1.5;
+            align-items: flex-start;
         }
 
         .book-back h3 {
@@ -1052,6 +1053,7 @@
         .book-back .book-author {
             color: var(--light-text);
             margin-bottom: 1rem;
+            text-align: left;
             font-style: italic;
         }
 
@@ -1063,6 +1065,7 @@
 
         .book-title {
             font-weight: bold;
+            text-align: left;
             margin-bottom: 0.5rem;
         }
 
@@ -1884,7 +1887,9 @@
                             <div class="book-back">
                                 <h4>East of Eden</h4>
                                 <p class="book-author">John Steinbeck</p>
-                                <p class="book-review">Review coming soon!</p>
+                                <p class="book-review">A multigenerational saga of two families in California's Salinas Valley, centered on the Trasks 
+                                    and their recurring struggle with jealousy, rejection, and the question of how our parents' deeds shape our own lives. It's one of the few
+                                books I just couldn't put down - the prose is so, so good.</p>
                             </div>
                         </div>
                     </div>
@@ -1912,7 +1917,10 @@
                             <div class="book-back">
                                 <h4>La Peste</h4>
                                 <p class="book-author">Albert Camus</p>
-                                <p class="book-review">Review coming soon!</p>
+                                <p class="book-review">Camus' most famous work chronicles a plague outbreak in Algeria with the detached precision of a medical report.
+                                    The flatness of the prose is the point: no heroics, no melodrama, just people struggling with an invisible enemy.
+                                     Written in the shadow of the Nazi occupation, it can either be read as an allegory, or - as many have done during the Covid-19 pandemic - 
+                                     in a very literal way. Either way, it's wonderfully somber and haunting.</p>
                             </div>
                         </div>
                     </div>
@@ -2076,7 +2084,11 @@
                             <div class="book-back">
                                 <h4>The Secret of Our Success</h4>
                                 <p class="book-author">Joseph Henrich</p>
-                                <p class="book-review">Review coming soon!</p>          
+                                <p class="book-review">Henrich's core claim is that much of what makes humans successful isn't individual intelligence but our ability 
+                                    to copy others and accumulate cultural knowledge we don't fully understand. The discussion of how people "figured out" how to detoxify poisonous cassava alone
+                                    makes this worth reading. 
+                                     The uncomfortable (for some people, anyway) implication is that traditions often encode solutions to problems we can't consciously articulate,
+                                      and "rational" attempts to optimize them can backfire.</p>          
                             </div>
                         </div>
                     </div>
@@ -2088,7 +2100,9 @@
                             <div class="book-back">
                                 <h4>Seeing Like a State</h4>
                                 <p class="book-author">James C. Scott</p>
-                                <p class="book-review">Review coming soon!</p>
+                                <p class="book-review">Scott frames state formation as a grand exercise in making society legible, by standardizing local customs, measures, and property systems so they can be 
+                                    taxed and conscripted from. My favorite example is the window tax, which attempted to measure house values by counting windows (with predictable architectural consequences).
+                                    His point isn't that standardization is always bad, but that we're too quick to dismiss local practices as irrational.</p>
                             </div>
                         </div>
                     </div>
@@ -2130,7 +2144,10 @@
                             <div class="book-back">
                                 <h4>Bureaucracy</h4>
                                 <p class="book-author">James Q. Wilson</p>
-                                <p class="book-review">Review coming soon!</p>
+                                <p class="book-review">Not a gripping read and no grand theory, 
+                                    but a wonderful exploratory tour of the variety of public agencies and the bureaucrats that staff them. 
+                                    Especially libertarians should give this a read, and ask themselves whether cynicism about the public sector is really all they want to offer.
+                                    Like it or not, bu the usual market remedies don't translate: we sometimes want bureaucracies to be inefficient!</p>
                             </div>
                         </div>
                     </div>
@@ -2231,14 +2248,16 @@
                         </div>
                     </div>
                 </div>
-                <button class="expand-books-btn" id="expand-nonfiction-btn" onclick="toggleBooks('nonfiction')">
-                    <span id="expand-nonfiction-text">show more books</span>
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z"/>
-                    </svg>
-                </button>
-                </div>
+            <button class="expand-books-btn" id="expand-nonfiction-btn" onclick="toggleBooks('nonfiction')">
+                <span id="expand-nonfiction-text">show more books</span>
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z"/>
+                </svg>
+            </button>
             </div>
+        </div>
+        <p style="margin-top: 3rem; margin-bottom: 2rem; text-align: center;">
+        For the complete list of what I've read and what's on deck, see my <a href = "https://www.libib.com/u/danielissing/" target="_blank">Libib collections.</a> </p>
     </section>
 
     <!-- Contact Section -->
