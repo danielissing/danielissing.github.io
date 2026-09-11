@@ -1293,6 +1293,49 @@
   .world-travel .world-percentage { font-size: 1.5rem; }
 }
 
+
+/* A quieter first pass: retain the green palette and personal details. */
+:root { --map-water: #edf3f5; --map-land: #e1e6e4; --map-stroke: #b9c5bf; --map-visited: #71987c; --shadow: 0 2px 8px rgba(0,0,0,.035); }
+[data-theme="dark"] { --map-water: #222c34; --map-land: #36433f; --map-stroke: #56675d; --map-visited: #80ac8d; }
+section { min-height: auto; padding: 3rem 2rem; scroll-margin-top: 4rem; }
+#about, #writing { padding: 3rem 2rem; }
+#home { padding: 2.25rem 2rem 1.75rem; border-radius: 12px; background: linear-gradient(135deg, rgba(45,90,61,.045), rgba(59,130,196,.035)); }
+h1 { font-size: 2.65rem; margin-bottom: .4rem; animation: none; }
+h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+.hero-tag { font-size: 1.2rem; margin-bottom: 1rem; color: var(--light-text); animation: none; }
+.social-links { gap: 1.1rem; margin-top: 1rem; animation: none; }
+.social-links a { width: 34px; height: 34px; background: transparent; box-shadow: none; border: none; }
+.social-links svg { width: 19px; height: 19px; }
+.about-container { padding: 2rem; gap: 2rem; border-radius: 12px; grid-template-columns: minmax(180px, 1fr) 2.4fr; }
+.about-content { padding: 0; }
+.about-content p + p { margin-top: 1rem; }
+.section-intro, section > p, .world-travel > p { max-width: 70ch; margin: 0 auto 1.5rem; text-align: left !important; }
+.cv-item, .project-card, .blog-post, .contact-form { border-radius: 12px; }
+.cv-item:hover, .project-card:hover, .blog-post:hover, .photo-item:hover, .social-links a:hover, .theme-toggle:hover { transform: none; box-shadow: var(--shadow); }
+.world-travel { padding: 1.5rem; box-shadow: none; }
+#world-map { box-shadow: none; border-radius: 0; }
+#world-map .sphere { fill: var(--map-water); }
+#world-map .graticule { stroke: var(--map-stroke); opacity: .25; }
+#world-map .country { stroke: var(--map-stroke); }
+#world-map .country.visited { stroke: var(--map-water); filter: none; cursor: default; }
+#world-map .country.visited:hover { filter: none; opacity: .8; }
+:focus-visible { outline: 2px solid var(--primary-green); outline-offset: 4px; }
+@media (max-width: 768px) {
+  section, #about, #writing { padding: 2rem 1rem; }
+  #home { padding: 1.5rem 1rem; }
+  h1 { font-size: 2.1rem; }
+  .hero-tag { font-size: 1.05rem; }
+  .about-container { grid-template-columns: 1fr; padding: 1.25rem; gap: 1.25rem; }
+  .about-image { max-width: 240px; margin: auto; }
+  .world-travel { padding: .5rem 0; }
+  .adventure-grid { grid-template-columns: 1fr; }
+  .theme-toggle { top: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
 </style>
 </head>
 <body>
@@ -1314,7 +1357,7 @@
             <li><a href="#cv" class="nav-link">cv</a></li>
             <li><a href="#coding" class="nav-link">coding</a></li>
             <li><a href="#travel" class="nav-link">travel</a></li>
-            <li><a href="#exploits" class="nav-link">exploits</a></li>
+            <li><a href="#exploits" class="nav-link">outdoors</a></li>
             <li><a href="#writing" class="nav-link">writing</a></li>
             <li><a href="#books" class="nav-link">books</a></li>
             <li><a href="#contact" class="nav-link">contact</a></li>
@@ -1357,22 +1400,13 @@
                 <img loading="lazy" src="images/daniel.png" alt="Daniel Issing">
             </div>
             <div class="about-content">
-                <p>
-                    Hi there and thanks for dropping by! I'm Daniel, a researcher in global health and development.
-                    My trajectory has been anything but linear, and over the last decade I have been doing research on obscure mathematical objects called quantum algebras, ran a leadership seminar out of an old leprosy ward in Nepal, 
-                     and developed machine learning algorithms to catch insurance fraudsters. Oh, and I almost ended up doing a PhD in neuroeconomics...but more on that <a href="#cv" class="nav-link">below</a>.<br><br>
-
-                    I'm a generalist at heart; I enjoy <a href="#coding" class="nav-link">coding</a> and math problems just as much as 
-                    <a href="#books" class="nav-link">reading</a> several books at once and <a href="#writing" class="nav-link">writing</a> about anything that captures my imagination. 
-                    Such a temperament often gets in the way of becoming a subject matter expert in any domain, but I like to imagine that it lets me spot patterns and connections that specialists overlook.
-                    If there's a thread connecting all of the above, it's probably just a stubborn commitment to understanding how things actually work, whether that's AI, quantum computing or programs to alleviate global poverty. <br><br>
-
-                    And why limit my curiosity to intellectual pursuits? 
-                    As an avid trail runner & cyclist, I'm always keen to find new ways to explore my limits, some of which I've highlighted <a href="#exploits" class="nav-link">below</a>.
-                    And I love connecting these exploits with <a href="#travel" class="nav-link">traveling</a> to new places. 
-                    Scroll on to learn more!
-                
-                </p>
+                <p>Hi there and thanks for dropping by! I'm Daniel, a researcher in global health and development at GiveWell.
+                    Before that, I worked on machine learning for insurance fraud detection, ran a leadership seminar out of an old leprosy ward in Nepal,
+                    and did some research on obscure mathematical objects called quantum algebras. Oh, and I almost ended up doing a PhD in neuroeconomics...</p>
+                <p>I'm a generalist at heart who enjoys <a href="#coding">coding</a> and math problems just as much as trying to outpace my ever-growing
+                    <a href="#books">reading list</a>, and occasionally I <a href="#writing">write</a> about stuff that's on my mind. </p>
+                <p>Outside work, I spend a lot of time <a href="#exploits">running and cycling</a>, often as an excuse to
+                    <a href="#travel">see somewhere new</a>. Scroll on to learn more!</p>
             </div>
         </div>
     </section>
@@ -1384,13 +1418,11 @@
         <div class="cv-item">
             <img loading="lazy" src="icons/givewell.png" alt="GiveWell" class="cv-icon">
             <div class="cv-content">
-                <h3>Senior Research Associate</h3>
+                <h3>Researcher</h3>
                 <p><strong><a href = "https://www.givewell.org/" target="_blank">GiveWell</a></strong></p>
-                <p>As a researcher at GiveWell, I explore new areas of grantmaking to expand the organization's footprint
-                    and enable them to unlock new funding opportunities. GiveWell focuses on identifying the most
-                    cost-effective programs to ensure that donations have the highest impact on global well-being. 
-                    This work includes assessing the evidence behind programs, modeling disease burden, understanding the relative strengths of different actors in the field and
-                    diving into M&E data, among other things. </p>
+                <p>As a researcher at GiveWell, I explore new areas of grantmaking to expand the organization's footprint and enable them to unlock new funding opportunities. 
+                    GiveWell focuses on identifying the most cost-effective programs to ensure that donations have the highest impact on global well-being. This work often
+                requires me to rapidly pivot from one cause area to another, making decisions even when we're massively uncertain, and above all knowing when we've learned enough to move on. </p>
             </div>
         </div>
 
@@ -1426,9 +1458,9 @@
                 <h3>MSc in Theoretical & Mathematical Physics</h3>
                 <p><strong><a href = "https://www.lmu.de/en/" target="_blank">Ludwig Maximilian University Munich</a> &
                      <a href = "https://lapth.cnrs.fr/en" target="_blank">LAPTh</a></strong></p>
-                <p>I was accepted into an <a href = "https://www.theorie.physik.uni-muenchen.de/TMP/index.html" target="_blank">elite master course on theoretical and mathematical physics</a> for my graduate studies. 
+                <p>I studied <a href="https://www.theorie.physik.uni-muenchen.de/TMP/index.html" target="_blank">theoretical and mathematical physics</a> at LMU.
                     My thesis (which you can find <a href = "https://www.theorie.physik.uni-muenchen.de/TMP/theses/issingthesis.pdf" target="_blank">here</a>)
-                    was written under the supervision of Luc Frappat and Eric Ragoucy at the Labortoire d'Annecy-le-Vieux de Physique Théorique (LAPTh). This collaboration resulted in a <a href = "https://iopscience.iop.org/article/10.1088/1751-8121/aae296" target = "blank"> paper</a>
+                    was written under the supervision of Luc Frappat and Eric Ragoucy at the Laboratoire d'Annecy-le-Vieux de Physique Théorique (LAPTh). This collaboration resulted in a <a href = "https://iopscience.iop.org/article/10.1088/1751-8121/aae296" target = "blank"> paper</a>
                      in which we showed how to construct the center of an elliptic algebra that's relevant to the study of quantum integrable systems. If all of this
                     sounds like mumbo jumbo to you, <a href = "https://daniel-issing.medium.com/particles-symmetries-and-the-weird-world-of-quantum-mechanics-69f87968a778" target="_blank">here's my attempt</a> to provide a non-technical, high-level overview of that work.
             </div>
@@ -1468,7 +1500,7 @@
                         of mathematical insights to reduce computational complexity and avoid stack overflows? 
                     </p>
                     <p style="margin-top: 1rem;">For this project, I pitted three LLMs against each other and challenged them to
-                        generate scripts for Project Euler problems of ever-increasing complexity. The results were surprising in many ways.</p>
+                        generate scripts for Project Euler problems of ever-increasing complexity. The code and results are on GitHub.</p>
                     <p style="margin-top: 1rem;">
                         <a href="https://github.com/danielissing/euler" target="_blank" >View on GitHub →</a>
                     </p>
@@ -1500,20 +1532,12 @@
         <h2>traveling</h2>
         
         <div class="world-travel">
-            <p style="margin-bottom: 2rem; text-align: center;"> 
-                The earth is just one small planet in our solar system, and this solar system occupies just tiny part of one of the trillions of galaxies that form our universe.
-                And yet, I've seen precious little of it.
-                I'm using this map to remind myself that there are still many places left to be explored, just as there are many things I don't know. 
-                A couple highlights from the ones I did get to see are pictured further down.</a> </p>               
-            
-            </p>
+            <p class="section-intro">A few photos from trips over the years, with places I've visited shaded green on the map.
+                Many of these trips involved walking uphill for a bit and then some.</p>
             <div id="world-map">
                 <svg viewBox="0 0 1000 500" style="width: 100%; height: 100%;"></svg>
             </div>
-            <div class="travel-stats">
-                <span class="country-count">0</span> countries -  
-                <span class="world-percentage">0%</span> of the world
-            </div>
+            <p id="map-status" role="status" hidden>The map couldn't load. The photos below are still here to browse.</p>
         </div>
         
         <div class="photo-gallery collapsed" id="photo-gallery">
@@ -1640,9 +1664,9 @@
     <!-- Sports Section -->
     <section id="exploits">
         <h2>running & cycling</h2>
-            <p style="margin-bottom: 2rem;text-align: center;">There are many ways to test one's limits, but for me, nothing beats endurance sports. 
-                Especially when you can combine it with breathtaking views! Ever since I ran my first half marathon at age 16, I've been hooked, and have finshed over 35 ultramarathons since. Below is a small selection of the most daunting, beautiful, and at times soul-crushing exploits I foolishly signed up for.
-            </p>
+            <p class="section-intro">I've been hooked on running since my first half marathon at 16.
+                These days, I especially enjoy long days on trails and trips by bike.
+                Here are a few that have stayed with me.</p>
 
         <!-- Lightbox -->
         <div id="lightbox" class="lightbox">
@@ -1766,11 +1790,8 @@
     <!-- Books Section -->
     <section id="books">
         <h2>book recommendations</h2>
-            <p style="margin-bottom: 2rem; text-align: center;">
-                I love getting book recommendations from other people, so it's only fair I share mine. Of course, such a list is never static, not only because it - hopefully - keeps growing.
-                Tastes change, insights that once seemed groundbreaking start feeling trivial, and memory isn't always as reliable as we'd like to think. 
-                But while the selection below is necessarily a snapshot of a particular moment in time, 
-                I don't think you'd regret picking up any of these. Click on them for a brief review! </p>
+            <p class="section-intro">I love getting book recommendations, so here are a few of mine.
+                Click a cover for a short review!</p>
         
         <div class="books-container">
             <div class="book-category">
@@ -2034,15 +2055,16 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9781846141812-M.jpg" alt="The Righteous Mind">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780691166858-M.jpg" alt="The Secret of Our Success">
                             </div>
                             <div class="book-back">
-                                <h4>The Righteous Mind</h4>
-                                <p class="book-author">Jonathan Haidt</p>
-                                <p class="book-review">Politics and religion are the two topics not to be discussed in polite society.
-                                    What this piece of advice is based on and how we might be able to do better in an increasingly polarized society is the topic of Haidt's classic book.
-                                    Not everything in it has stood the test of time (e.g. his "Moral Foundations" theory seems to have major replication issues), but it remains a standout
-                                    work to help us appreciate our own blind spots a little more.</p>
+                                <h4>The Secret of Our Success</h4>
+                                <p class="book-author">Joseph Henrich</p>
+                                <p class="book-review">Henrich's core claim is that much of what makes humans successful isn't individual intelligence but our ability 
+                                    to copy others and accumulate cultural knowledge we don't fully understand. The discussion of how people "figured out" how to detoxify poisonous cassava alone
+                                    makes this worth reading. 
+                                     The uncomfortable (for some people, anyway) implication is that traditions often encode solutions to problems we can't consciously articulate,
+                                      and "rational" attempts to optimize them can backfire.</p>          
                             </div>
                         </div>
                     </div>
@@ -2055,7 +2077,7 @@
                                 <h4>Gödel, Escher, Bach</h4>
                                 <p class="book-author">Douglas Hofstadter</p>
                                 <p class="book-review">Take it from Martin Gardner: "Every few decades, an unknown author brings out a book of such depth, clarity, range, wit, beauty and originality that it is recognized at once as a major literary event."
-                                    The field of AI has changed tremendously since GEB was first published, but the book has aged surprisingly well. A must-read for anyone who is fascinatrf by how mind emerges from matter.
+                                    The field of AI has changed tremendously since GEB was first published, but the book has aged surprisingly well. A must-read for anyone who is fascinated by how mind emerges from matter.
                                 </p>
                             </div>
                         </div>
@@ -2079,16 +2101,15 @@
                     <div class="book-card" onclick="flipBook(this)">
                         <div class="book-inner">
                             <div class="book-front">
-                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9780691166858-M.jpg" alt="The Secret of Our Success">
+                                <img loading="lazy" src="https://covers.openlibrary.org/b/isbn/9781846141812-M.jpg" alt="The Righteous Mind">
                             </div>
                             <div class="book-back">
-                                <h4>The Secret of Our Success</h4>
-                                <p class="book-author">Joseph Henrich</p>
-                                <p class="book-review">Henrich's core claim is that much of what makes humans successful isn't individual intelligence but our ability 
-                                    to copy others and accumulate cultural knowledge we don't fully understand. The discussion of how people "figured out" how to detoxify poisonous cassava alone
-                                    makes this worth reading. 
-                                     The uncomfortable (for some people, anyway) implication is that traditions often encode solutions to problems we can't consciously articulate,
-                                      and "rational" attempts to optimize them can backfire.</p>          
+                                <h4>The Righteous Mind</h4>
+                                <p class="book-author">Jonathan Haidt</p>
+                                <p class="book-review">Politics and religion are the two topics not to be discussed in polite society.
+                                    What this piece of advice is based on and how we might be able to do better in an increasingly polarized society is the topic of Haidt's classic book.
+                                    Not everything in it has stood the test of time (e.g. his "Moral Foundations" theory seems to have major replication issues), but it remains a standout
+                                    work to help us appreciate our own blind spots a little more.</p>
                             </div>
                         </div>
                     </div>
@@ -2361,6 +2382,12 @@
       const open = navList.classList.toggle('is-open');
       menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+    navList.addEventListener('click', (event) => {
+      if (event.target.closest('a')) {
+        navList.classList.remove('is-open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
   }
 })();
 
@@ -2469,8 +2496,10 @@ window.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(rssUrl);
                 const data = await response.json();
                 
-                if (data.status === 'ok') {
+                if (response.ok && data.status === 'ok' && data.items?.length) {
                     displayPosts(data.items.slice(0, 2)); // Show first 2 posts
+                } else {
+                    throw new Error('No posts available');
                 }
             } catch (error) {
                 console.error('Error loading Medium posts:', error);
@@ -2546,6 +2575,23 @@ window.addEventListener('DOMContentLoaded', () => {
                 text.textContent = 'show fewer books';
             }
         }
+
+        document.querySelectorAll('.photo-item, .flip-card, .book-card, .lightbox-close, .lightbox-nav').forEach(control => {
+            control.tabIndex = 0;
+            control.setAttribute('role', 'button');
+            const label = control.querySelector('img')?.alt || control.querySelector('h4')?.textContent;
+            if (label) control.setAttribute('aria-label', label.trim());
+            control.addEventListener('keydown', event => {
+                if (event.target !== control) return;
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    control.click();
+                }
+            });
+        });
+        document.querySelector('.lightbox-close').setAttribute('aria-label', 'Close photo');
+        document.querySelector('.lightbox-prev').setAttribute('aria-label', 'Previous photo');
+        document.querySelector('.lightbox-next').setAttribute('aria-label', 'Next photo');
 
         // Load Medium posts when page loads
         loadMediumPosts();
@@ -2652,31 +2698,17 @@ window.addEventListener('DOMContentLoaded', () => {
           ]);
           const normalize = n => alias.get(n) || n;
           const visitedSet = new Set(visitedCountries.map(normalize));
-          const COUNTRY_TOTAL = 195;
 
+          if (typeof d3 === 'undefined') {
+            document.getElementById('map-status').hidden = false;
+            return;
+          }
           const svg = d3.select('#world-map svg')
             .attr('preserveAspectRatio','xMidYMid meet')
             .attr('viewBox','0 0 1000 500');
 
           // Clear previous
           svg.selectAll('*').remove();
-
-          // ---- defs: ocean gradient & effects ----
-          const defs = svg.append('defs');
-
-          const grad = defs.append('radialGradient')
-              .attr('id','oceanGradient')
-              .attr('cx','50%').attr('cy','50%');
-          grad.append('stop').attr('offset','0%').attr('stop-color','var(--water2)');
-          grad.append('stop').attr('offset','100%').attr('stop-color','var(--water1)');
-
-          // Drop shadow for visited
-          const visitedShadow = defs.append('filter').attr('id','visitedShadow').attr('x','-20%').attr('y','-20%').attr('width','140%').attr('height','140%');
-          visitedShadow.append('feDropShadow').attr('dx','0').attr('dy','.6').attr('stdDeviation','0.6').attr('flood-color','#000').attr('flood-opacity','.25');
-
-          // Hover glow
-          const visitedGlow = defs.append('filter').attr('id','visitedGlow').attr('x','-40%').attr('y','-40%').attr('width','180%').attr('height','180%');
-          visitedGlow.append('feDropShadow').attr('dx','0').attr('dy','0').attr('stdDeviation','1.2').attr('flood-color','#3b82f6').attr('flood-opacity','.9');
 
           // Tooltip
           const tooltip = d3.select('#world-map').append('div').attr('class','map-tooltip');
@@ -2690,21 +2722,9 @@ window.addEventListener('DOMContentLoaded', () => {
           const grat = d3.geoGraticule10();
           svg.append('path').datum(grat).attr('class','graticule').attr('d', path);
 
-          // Multi-color palette for visited
-          const visitedPalette = [
-              '#4f7cac', '#88ab75', '#f7a440', '#d46c70', '#7a5fac',
-              '#3a9d8f', '#c08f5a', '#5aa2ae', '#e07a5f', '#7bb662'
-          ];
-
-          function colorFor(name){
-              let h = 0;
-              for (let i=0; i<name.length; i++) h = (h*31 + name.charCodeAt(i)) >>> 0;
-              return visitedPalette[h % visitedPalette.length];
-          }
-
           d3.json(WORLD_GEOJSON).then(geo => {
               const features = geo.features;
-              const matchedVisited = new Set();
+
 
               svg.append('g').selectAll('path.country')
                 .data(features)
@@ -2712,13 +2732,12 @@ window.addEventListener('DOMContentLoaded', () => {
                   .attr('class', d => {
                   const nm = d.properties?.name_long || d.properties?.name || d.properties?.admin || 'Unknown';
                   const isVisited = visitedSet.has(nm);
-                  if (isVisited) matchedVisited.add(nm);
                   return 'country' + (isVisited ? ' visited' : '');
                   })
-                  // IMPORTANT: use .style('fill', ...) to override CSS and ensure palette shows
+                  // Theme-aware colors for visited and unvisited countries
                   .style('fill', d => {
                   const nm = d.properties?.name_long || d.properties?.name || d.properties?.admin || 'Unknown';
-                  return visitedSet.has(nm) ? colorFor(nm) : 'var(--land)';
+                  return visitedSet.has(nm) ? 'var(--map-visited)' : 'var(--map-land)';
                   })
                   .attr('d', path)
                   .on('mousemove', (event, d) => {
@@ -2728,16 +2747,14 @@ window.addEventListener('DOMContentLoaded', () => {
                       .style('left', `${event.offsetX}px`)
                       .style('top',  `${event.offsetY}px`)
                       .style('opacity', 1)
-                      .html(`${nm}${isVisited ? ' · ✅ visited' : ''}`);
+                      .html(`${nm}${isVisited ? ' · visited' : ''}`);
                   })
                   .on('mouseleave', () => tooltip.style('opacity', 0));
 
-              // Stats
-              const count = visitedSet.size;
-              const pct = Math.round((count / COUNTRY_TOTAL) * 100);
-              document.querySelector('.country-count').textContent = count;
-              document.querySelector('.world-percentage').textContent = pct + '%';
-          }).catch(err => console.error('World map error:', err));
+          }).catch(err => {
+              document.getElementById('map-status').hidden = false;
+              console.error('World map error:', err);
+          });
           });
 
         // Flip cards: mobile = expand details; desktop = 3D flip
